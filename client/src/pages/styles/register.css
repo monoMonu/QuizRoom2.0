@@ -1,0 +1,74 @@
+.registerPage{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   width: 100%;
+   height: 100vh;
+   font-size: 16px;
+}
+
+.gameTitle{
+   color: var(--light);
+}
+
+.container {
+   max-width: 500px;
+   padding: 1.5em;
+   color: var(--light);
+}
+
+.container h2{
+   text-align: center;
+   padding-bottom: .7em;
+   font-size: 2em;
+}
+
+.registerForm {
+   max-width: 400px;
+   margin: 0 auto; 
+}
+
+label{
+   display: inline-block;
+   padding: .2em 1.2em;
+}
+
+input{
+   outline: none;
+   font-size: 14px;
+   width: 100%;
+   margin-bottom: 1em;
+   box-sizing: border-box;
+   border: none;
+   border-radius: 3em;
+   padding: 1em 1.4em;
+   background: #aaa3;
+   color: var(--light);
+}
+
+input:focus{
+   background: var(--primaryColor);
+}
+
+button[type='submit'] {
+   border: none;
+   width: auto;
+   height: auto;
+   padding: .8em 2em;
+   border-radius: 4em;
+   font-size: 1em;
+   display: block;
+   margin: 1.5rem auto;
+}
+
+.alreadyAccount{
+   text-align: center;
+   font-size: .9em;
+   color: #8f8f8f;
+}
+.alreadyAccount a{
+   text-decoration: none;
+   color: var(--light);
+}
+
