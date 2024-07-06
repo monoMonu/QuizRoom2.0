@@ -1,4 +1,3 @@
-
 import TopBar from "../../components/TopBar";
 
 const difficulties = ["Easy", "Medium", "Hard"];
@@ -6,7 +5,19 @@ const categories = ["General Knowledge", "Books", "Film", "Music", "Musical & Th
 const numbers = [5, 10, 15, 20, 25, 30];
 
 
+// 
+function scroll_to_pg(pg) {
+   scroll(0, window.clientHeight * pg || document.documentElement.clientHeight * pg);
+}
+// 
+
+
 function StartSec(){
+
+   function startQuiz(){
+      scroll_to_pg(1);
+   }
+
    return (
       <section id="home_pg">
          <h1 className="gameTitle">QuizTime !
@@ -14,7 +25,7 @@ function StartSec(){
          </h1>
          <span id="logo">?</span>
          <div className="btn_box">
-            <button type="button" id="startBtn" className="btn1">START</button>
+            <button type="button" id="startBtn" className="btn1" onClick={startQuiz}>START</button>
 
             <label htmlFor="difficulty">Choose Difficulty Level :</label>
             <select id="difficulty">

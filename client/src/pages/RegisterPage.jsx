@@ -6,14 +6,14 @@ import './styles/register.css'
 function RegisterPage(){
 
    const [data, setData] = useState({
-      fullname: '',
-      username: '',
-      email: '',
-      password: ''
+      username: "",
+      fullname: "",
+      email: "",
+      password: ""
    });
 
    return(
-      <secton className="section registerPage">
+      <section className="section registerPage">
          <h2 className="gameTitle">QuizTime</h2>
          <div className="container">
             <h2>Sign Up</h2>
@@ -21,6 +21,7 @@ function RegisterPage(){
                <label htmlFor="usernameField">Username:</label>
                <input 
                   type="text" 
+                  name="username"
                   className="usernameField" 
                   onChange={(e)=>setData({...data, username: e.currentTarget.value})} 
                   value={data.username} required 
@@ -29,6 +30,7 @@ function RegisterPage(){
                <label htmlFor="fullnameField">Full Name:</label>
                <input 
                   type="text" 
+                  name="fullname"
                   className="fullnameField" 
                   onChange={(e)=>setData({...data, fullname: e.currentTarget.value})} 
                   value={data.fullname} required 
@@ -37,6 +39,7 @@ function RegisterPage(){
                <label htmlFor="emailField">Email:</label>
                <input 
                   type="email" 
+                  name="email"
                   className="emailField" 
                   onChange={(e)=>setData({...data, email: e.currentTarget.value})} 
                   value={data.email} required 
@@ -45,6 +48,7 @@ function RegisterPage(){
                <label htmlFor="passwordField">Password:</label>
                <input 
                   type="password" 
+                  name="password"
                   className="passwordField" 
                   onChange={(e)=>setData({...data, password: e.currentTarget.value})} 
                   value={data.password} required 
@@ -59,7 +63,7 @@ function RegisterPage(){
             </p>
 
          </div>
-      </secton>
+      </section>
    )
 }
 

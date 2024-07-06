@@ -5,14 +5,14 @@ import errorHandler from './middlewares/errorHandler.js';
 const app = express();
 
 // Middlewares
-app.use(express.json());
 app.use(express.static('public'));
 app.use(express.json( { limit: "16kb" })); 
 app.use(cookieParser());
 app.use(cors({
-   origin: ['https://monomonu.github.io', 'http://localhost:3000',  'http://127.0.0.1:3000'],
+   origin: ['http://localhost:3000',  'http://127.0.0.1:3000'],
    methods: ['GET', 'POST', 'PUT', 'PATCH','DELETE'],
-   optionsSuccessStatus: 200
+   optionsSuccessStatus: 200,
+   credentials: true
 }));
 
 // Routes

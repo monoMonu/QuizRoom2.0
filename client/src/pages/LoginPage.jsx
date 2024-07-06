@@ -28,7 +28,7 @@ function LogInPage (){
                   value={data.emailORusername} required 
                />
 
-               <label for="password">Password:</label>
+               <label htmlFor="password">Password:</label>
                <input 
                   type="password" 
                   className="password"  
