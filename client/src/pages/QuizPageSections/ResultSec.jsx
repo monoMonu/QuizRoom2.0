@@ -1,5 +1,9 @@
+import { useAuth } from "../../context/Auth"
 
 function ResultSec(){
+
+   const { user } = useAuth();
+
    return (
       <section id="result_pg">
          <h1 className="heading">RESULT</h1>
@@ -32,7 +36,7 @@ function ResultSec(){
          <div className="top_bar">
             <p className="hs_box">Highest Score : <span className="hs">0</span></p>
             <button title="Profile button" type="button" className="profile_btn">
-               <img src="https://i.ibb.co/r7P3mGQ/fox-6249911.png" alt="Profile Button"/>
+               <img src={user.avatar} alt="Profile Button"/>
             </button>
          </div>
 

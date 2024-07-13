@@ -5,18 +5,18 @@ const AuthContext = createContext(null);
 // auth Provider
 export const AuthProvider = ({children}) => {
 
-   const [user, setUser] = useState({name: "Monu"});
+   const [user, setUser] = useState(true);
    
-   const login = (user) => {
+   const updateUser = (user) => {
       setUser(user);
    }
    
-   const logout = () => {
+   const removeUser = () => {
       setUser(null);
    }
 
    return (
-      <AuthContext.Provider value={{user, login, logout}}>
+      <AuthContext.Provider value={{user, updateUser, removeUser}}>
          {children}
       </AuthContext.Provider>
    )

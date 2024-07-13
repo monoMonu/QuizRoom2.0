@@ -6,15 +6,19 @@
    width: 100%;
    height: 100vh;
    font-size: 16px;
+   padding: 0 1.5rem;
 }
 
 .gameTitle{
    color: var(--light);
+   font-family: 'Rock Salt', 'Poppins', sans-serif;
+   font-size: 2.5em;
 }
 
 .container {
-   max-width: 500px;
-   padding: 1.5em;
+   max-width: 600px;
+   width: 100%;
+   padding: 0 1.5em;
    color: var(--light);
 }
 
@@ -24,9 +28,24 @@
    font-size: 2em;
 }
 
-.registerForm {
-   max-width: 400px;
+.registrationForm {
+   max-width: 600px;
    margin: 0 auto; 
+}
+
+.inputBox{
+   margin-bottom: 1em;
+}
+
+.inputBox i{
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   font-size: .95em;
+   padding: 1em;
+}
+.inputBox>.fa-eye, .inputBox>.fa-eye-slash{
+   cursor: pointer;
 }
 
 label{
@@ -38,11 +57,10 @@ input{
    outline: none;
    font-size: 14px;
    width: 100%;
-   margin-bottom: 1em;
    box-sizing: border-box;
    border: none;
    border-radius: 3em;
-   padding: 1em 1.4em;
+   padding: 1em 2em 1em 1.4em;
    background: #aaa3;
    color: var(--light);
 }
@@ -51,15 +69,23 @@ input:focus{
    background: var(--primaryColor);
 }
 
-button[type='submit'] {
+.errorBox {
+   color: rgb(107, 107, 107);
+   text-align: center;
+   font-size: .8em;
+}
+
+button [type="submit"] {
    border: none;
    width: auto;
    height: auto;
    padding: .8em 2em;
    border-radius: 4em;
-   font-size: 1em;
+   font-size: .5em;
    display: block;
-   margin: 1.5rem auto;
+   margin: 2em auto 1em;
+   background-color: var(--secondaryColor);
+   color: var(--text-2);
 }
 
 .alreadyAccount{

@@ -1,0 +1,37 @@
+.notFoundPage {
+   display: flex;
+   justify-content: center;
+   text-align: center;
+   padding-top: 3rem;
+}
+
+.container {
+   max-width: 300px;
+   padding: 2% 5%;
+}
+
+.container img {
+   width: 100%;
+   margin: 0 auto;
+}
+
+.container p {
+   font: 600 1.3rem monospace;
+   margin: 15px 0;
+}
+
+.homeButton {
+   display: inline-block;
+   padding: 10px 20px;
+   margin-top: 20px;
+   font-size: 1rem;
+   color: #fff;
+   background-color: var(--primaryColor);
+   text-decoration: none;
+   border-radius: 25px;
+   transition: background-color 0.3s ease-in-out;
+}
+
+.homeButton:hover {
+   background-color: var(--secondaryColor);
+}

@@ -1,0 +1,85 @@
+.sideMenu {
+   width: 30%;
+   min-width: 300px;
+   max-width: 360px;
+   height: 100vh;
+   background-color: rgba(0, 0, 0, 0.3);
+   border-radius: 10px;
+   overflow: hidden;
+   box-shadow: 0 .3em .6em rgba(0, 0, 0, 0.2);
+   color: var(--text-1);
+}
+
+.profileSection {
+   padding: 20px 14px 0 14px;
+   text-align: center;
+   border-bottom: 1px solid #333;
+}
+
+.profilePic {
+   width: 150px;
+   height: 150px;
+   border-radius: 50%;
+   margin: 15px auto;
+   border: 2px solid var(--dark);
+   display: block;
+}
+
+.profileInfo {
+   color: var(--text-3);
+}
+
+.fullname {
+   font-size: 1.5em;
+   color: var(--text-1);
+   line-height: 1.6em;
+}
+
+.email,
+.username {
+   line-height: 1.3em;
+   font-size: 0.9em;
+}
+
+.highScore {
+   margin: 15px auto 10px;
+   padding: 10px 16px;
+   text-align: left;
+   border-radius: 20px;
+   background-color: var(--semi-transparent);
+   color: var(--text-1);
+}
+
+.highScore span {
+   float: right;
+}
+
+.navButtons {
+   padding: 14px;
+}
+
+.navBtn {
+   width: 100%;
+   padding: 13px 0;
+   margin: 5px 0;
+   background-color: var(--secondaryColor);
+   border: none;
+   color: var(--text-2);
+   font: 500 1em 'Poppins', sans-serif;
+   cursor: pointer;
+   border-radius: 5px;
+   transition: background-color 0.3s;
+}
+
+.navBtn:hover {
+   background-color: var(--primaryColor);
+}
+
+.navBtn:focus {
+   outline: none;
+}
+
+.copyRight {
+   text-align: center;
+   font-size: .85em;
+}

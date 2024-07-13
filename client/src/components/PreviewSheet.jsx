@@ -1,6 +1,6 @@
 
 
-function PreviewSheet(){
+const PreviewSheet = () => {
    return (
       <section id="previewSheetWrapper">
          <div id="previewSheet">

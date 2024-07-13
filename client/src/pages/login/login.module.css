@@ -12,23 +12,41 @@
 .gameTitle{
    color: var(--light);
    margin-bottom: 2rem;
+   font-family: 'Rock Salt', 'Poppins', sans-serif;
+   font-size: 2.5em;
 }
 
 .container {
-   max-width: 500px;
+   width: 100%;
+   max-width: 550px;
    padding: 1.5em;
    color: var(--light);
 }
 
 .container h2{
    text-align: center;
-   padding-bottom: .7em;
+   padding-bottom: 1.5em;
    font-size: 2em;
 }
 
 .loginForm {
-   max-width: 400px;
+   max-width: 550px;
    margin: 0 auto; 
+}
+
+.inputBox{
+   margin-bottom: 1em;
+}
+
+.inputBox i{
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   font-size: .95em;
+   padding: 1em;
+}
+.inputBox>.fa-eye, .inputBox>.fa-eye-slash{
+   cursor: pointer;
 }
 
 label{
@@ -40,11 +58,10 @@ input{
    outline: none;
    font-size: 14px;
    width: 100%;
-   margin-bottom: 1em;
    box-sizing: border-box;
    border: none;
    border-radius: 3em;
-   padding: 1em 1.4em;
+   padding: 1em 2em 1em 1.4em;
    background: #aaa3;
    color: var(--light);
 }
@@ -53,8 +70,14 @@ input:focus{
    background: var(--primaryColor);
 }
 
+.errorBox {
+   color: rgb(255, 72, 72);
+   text-align: center;
+   font-size: .8em;
+}
 
-button[type='submit'] {
+
+button[type="submit"] {
    border: none;
    width: auto;
    height: auto;
@@ -62,7 +85,9 @@ button[type='submit'] {
    border-radius: 4em;
    font-size: 1em;
    display: block;
-   margin: 2em auto;
+   margin: 3em auto 2em;
+   background-color: var(--secondaryColor);
+   color: var(--text-2);
 }
 
 .alreadyAccount{
