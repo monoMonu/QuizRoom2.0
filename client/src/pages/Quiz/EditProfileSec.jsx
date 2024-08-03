@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useAuth } from '../../context/Auth';
+import { useAuth } from '../../context/authContext/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { updateUserDetails } from '../../actions/userAction';
 
 export const EditProfileForm = () => {
 
@@ -25,9 +24,8 @@ export const EditProfileForm = () => {
    const handleFormSubmit = async (e) => {
       try {
          setError("");
-         const res = await updateUserDetails(formData);
-         updateUser({...user, ...res});
-         alert("scuccessfully updated user details");
+         updateUser(formData);
+         alert("scuccessfully updated user details"); // Can be improved
       } catch (error) {
          setError(error?.message || "Error while updating user details");
       }
@@ -81,7 +79,7 @@ export const EditProfileForm = () => {
             <div className="buttonBox">
                <button 
                   type="button" className="cancelBtn"
-                  onClick={() => navigate(-1)}
+                  onClick={() => navigate(-1, { replace: true })}
                > Cancel </button>
                <button 
                   type="submit" className="saveBtn"

@@ -1,12 +1,19 @@
 import React from 'react';
 import styles from './sideMenu.module.css';
-import { useAuth } from '../../context/Auth';
+import { useAuth } from '../../context/authContext/useAuth';
 import { Link } from 'react-router-dom';
+import { useQuiz } from '../../context/quizContext/useQuiz';
 
 
 const SideMenu = () => {
 
-   const { user } = useAuth();
+   const { user, isLoading, logout, error } = useAuth();
+   const { highScore } = useQuiz();
+
+   if (error) alert("Error while logging out");
+
+   if (isLoading) 
+      return <Loader text="Logging out..."/>;
 
    return (
       <div className={styles.sideMenu}>
@@ -17,7 +24,7 @@ const SideMenu = () => {
                <p className={styles.username}>{user.username}</p>
                <p className={styles.email}>{user.email}</p>
                <p className={styles.highScore}>
-                  High Score: <span>15</span>
+                  High Score: <span>{highScore}</span>
                </p>
             </div>
          </div>
@@ -25,10 +32,12 @@ const SideMenu = () => {
             <Link to="/quiz/edit-profile">
                <button className={styles.navBtn}>Update Profile</button>
             </Link>
-            <Link to="/quiz/leaderboard">
+            <Link to="/quiz/leaderboard?page=1&limit=10">
                <button className={styles.navBtn}>Leaderboard</button>
             </Link>
-            <button className={styles.navBtn}>Logout</button>
+            <Link to="/login" replace>
+               <button className={styles.navBtn} onClick={logout}>Log Out</button>
+            </Link>
          </nav>
          <p className={styles.copyRight}>
             &copy; {new Date().getFullYear()}, QuizRoom. All Rights Reserved.

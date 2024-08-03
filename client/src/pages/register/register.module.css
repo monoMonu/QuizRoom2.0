@@ -70,9 +70,9 @@ input:focus{
 }
 
 .errorBox {
-   color: rgb(107, 107, 107);
+   color: rgb(255, 72, 72);
    text-align: center;
-   font-size: .8em;
+   font-size: .85em;
 }
 
 button [type="submit"] {

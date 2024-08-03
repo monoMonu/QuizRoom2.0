@@ -1,7 +1,7 @@
 import asyncHandler from "../utils/asyncHandler.js";
 import ApiResponse from "../utils/ApiResponse.js";
 import ApiError from "../utils/apiError.js";
-import User from "../models/user.model.js";
+import User from "../models/User.model.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { uploadImgOnCloudinary } from '../utils/cloudinary.js';
@@ -123,9 +123,6 @@ const logInUser = asyncHandler(async (req, res) => {
       throw new ApiError(401, "Invalid credentials");
 
    const {accessToken, refreshToken} = await generateTokens(user._id);
-   user.accessToken = accessToken;
-   user.refreshToken = refreshToken;
-   await user.save();
 
    const loggedInUser = await User.findById(user._id).select('-password -refreshToken');
 
@@ -148,7 +145,7 @@ const logInUser = asyncHandler(async (req, res) => {
 
 })
 
-const logOutUser = asyncHandler( async (req, res)=>{
+const logOutUser = asyncHandler( async (req, res) => {
    // Middleware is run before this, in route, which decides whether this code will run or not.
 
    await User.findByIdAndUpdate(
@@ -161,7 +158,7 @@ const logOutUser = asyncHandler( async (req, res)=>{
    )
 
    const options = {
-      httpOnly: true,  maxAge: new Date(0)
+      httpOnly: true, secure: config.node_env==="development", sameSite: 'none',  maxAge: new Date(0)
    }
 
    return res

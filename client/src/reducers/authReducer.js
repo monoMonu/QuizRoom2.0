@@ -2,10 +2,16 @@
 const authReducer = (state, action) => {
    switch (action.type) {
       case 'LOGIN_SUCCESS':
-      case 'REGISTER_SUCCESS':
          return {
             ...state,
             isAuthenticated: true,
+            isLoading: false,
+            user: action.payload,
+            error: null,
+         };
+      case 'REGISTER_SUCCESS':
+         return {
+            ...state,
             isLoading: false,
             user: action.payload,
             error: null,
@@ -14,12 +20,15 @@ const authReducer = (state, action) => {
       case 'LOGIN_FAIL':
       case 'REGISTER_FAIL':
       case 'LOGOUT':
-         localStorage.removeItem('token');
          return {
             ...state,
             isAuthenticated: false,
             isLoading: false,
             user: null,
+            error: action.payload,
+         };
+      case 'LOGOUT_FAIL':
+         return {
             error: action.payload,
          };
       case 'CLEAR_ERROR':
@@ -31,7 +40,19 @@ const authReducer = (state, action) => {
          return {
             ...state,
             isLoading: true,
+            loaderText: action.payload
          };
+      case 'UPDATE_USER_SUCCESS':
+         return {
+            ...state,
+            user: {...state.user, ...action.payload},
+            isLoading: false,
+         }
+      case 'ERROR':
+         return {
+            ...state, 
+            error: action.payload,
+         }
       default:
          return state;
    }

@@ -14,6 +14,7 @@ html {
     font-size: 12px;
 }
 
+
 button,
 select {
     background: transparent;
@@ -37,7 +38,7 @@ button:focus, select:focus {
     --lg: 1500px;
     --md: 720px;
     --sm: 576px;
-
+    
     /* Dark theme */
     --primaryColor: #7986cb;
     --secondaryColor: #9fa8da;
@@ -47,7 +48,7 @@ button:focus, select:focus {
     --text-3: #aaaaaf;
     --bg: linear-gradient(to bottom, #0d133b, #1c204b, #0d133b);
     --revMode1: #c5cae9;
-
+    
 
     /* Light theme */
     /* --primaryColor:#303f9f;
@@ -59,6 +60,19 @@ button:focus, select:focus {
     --bg: linear-gradient(to bottom, #c5cae9, #ebeaf6, #c5cae9);
     --revMode1: #0d133b; */
 
+}
+
+*::-webkit-scrollbar {
+    width: 12px;
+    background: rgba(0, 0, 0, .4);
+    border-radius: 12px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--primaryColor);
+    width: 10px;
+    border: 2.5px var(--dark) solid;
+    border-radius: 10px;
 }
 
 .fas {
@@ -84,9 +98,24 @@ a {
     margin: 1rem 2rem;
     transition-property: color, background-color, transform;
     transition-duration: .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.btn1:hover {
+.btn2 {
+    display: block;
+    width: auto;
+    height: 3rem;
+    color: var(--text-2);
+    background-color: var(--secondaryColor);
+    border-radius: 3rem;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    font: 700 1.25rem "Comic Neue", "Poppins", sans-serif;
+}
+
+.btn1:hover, .btn2:hover {
     background: var(--primaryColor);
     transform: scale(.95);
 }
@@ -160,14 +189,13 @@ section {
 /* Loader Page Ends */
 
 /* Starter Page Begins */
-#home_pg {
+#home_pg, #result_pg {
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
     overflow: hidden;
 }
 
-.quizControls {
+.quizControls, .quizResults {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -202,7 +230,10 @@ section {
     padding: 2px 0;
 }
 
-.startBtn,
+.startBtn {
+    margin: 0 auto 1rem;
+}
+
 .btn_box>select {
     font-size: 1.5rem;
     width: auto;
@@ -235,7 +266,6 @@ section {
     background: var(--dark);
     color: var(--light);
 }
-
 
 .top_bar {
     display: flex;
@@ -628,31 +658,32 @@ section {
 
 .vt_box button:hover {
     transform: scale(.98);
-    background: #fa4;
 }
 
 .option.selected {
     background: linear-gradient(350deg, #f44, #fa4);
 }
 
-#next {
-    width: auto;
-    height: 3rem;
-    font-size: 1.2rem;
-    padding: 0 3rem;
-    border-radius: 3rem;
-    margin: 0 auto;
-    background-color: var(--secondaryColor);
+.nextPrevBtnBox {
+    display: flex;
+    justify-content: space-between;
+    width: min(84%, var(--md));
+    margin: 1rem auto;
 }
 
-#next:hover {
-    background-color: var(--primaryColor);
+.btn2.prevBtn {
+    border-radius: 3rem 1rem 1rem 3rem;
+    padding-left: 2.5rem;
+}
+.btn2.nextBtn {
+    border-radius: 1rem 3rem 3rem 1rem;
+    padding-right: 2.5rem;
 }
 
 /* Question Page Ends */
 
 /* Result Page starts */
-#result_pg {
+.quizResults {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -711,6 +742,7 @@ section {
     width: 100vw;
     height: 100vh;
     position: fixed;
+    z-index: 102;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, .4);
@@ -719,8 +751,6 @@ section {
     align-items: center;
     justify-content: center;
     transition: opacity .2s;
-    opacity: 0;
-    display: none;
 }
 
 #previewSheet {
@@ -790,6 +820,100 @@ section {
 .hz_box.homeRestart_box button {
     margin: .5rem 3rem;
 }
+
+/* Leaderboard Starts */
+.leaderboardSec {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.topBar {
+    position: relative;
+    width: 100%;
+    padding: 3rem 0;
+}
+
+.l-back {
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 50;
+}
+.l-back i {
+    font-size: 1.8rem;
+}
+
+.l-title {
+    font-size: 2.6rem;
+    text-align: center;
+    color: var(--text-1);
+    position: relative;
+    z-index: 10;
+}
+
+.leaderboard-container {
+    width: 100%;
+    margin: 0 auto 1rem;
+    border-radius: 10px;
+    padding: 0 1rem 1rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .6rem;
+    background: var(--semi-transparent);
+    padding: .4rem;
+    border-radius: 5px;
+}
+
+.l-rank, .l-name, .l-score {
+    background: var(--semi-transparent);
+    background: var(--primaryColor);
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.l-rank {
+    font-size: 1.2rem;
+    color: var(--text-2);
+    width: 3.4rem;
+}
+
+.l-name {
+    font-size: 1.1rem;
+    color: var(--text-2);
+    flex: 1;
+    text-align: left;
+}
+
+.l-score {
+    min-width: 5cap;
+    color: var(--text-2);
+}
+
+.pagination {
+    margin:  0 auto 1.5rem;
+    font-size: 1.2rem;
+}
+
+/* Leaderboard Ends */
 
 /* Copyright */
 #copyright {

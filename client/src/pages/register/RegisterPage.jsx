@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import React, { useState } from 'react'
+import {Link, Navigate, redirect, useNavigate} from 'react-router-dom'
 import styles from './register.module.css'
-import { registerUser } from '../../actions/userAction';
 import { Loader } from '../../components/Loader';
+import { useAuth } from '../../context/authContext/useAuth';
 
 
 function RegisterPage(){
 
    const navigate = useNavigate();
-   const [isLoading, setIsLoading] = useState(false);
-   const [error, setError] = useState("");
    const [showPass, setShowPass] = useState(false);
-
+   const { error, register, isLoading, isAuthenticated } = useAuth();
    const [data, setData] = useState({
       username: "",
       fullname: "",
@@ -19,46 +17,39 @@ function RegisterPage(){
       password: ""
    });
 
+   const handleInputChange = (e) => {
+      setData({
+         ...data,
+         [e.currentTarget.name]: e.currentTarget.value
+      })
+   }
   
-   const register = async (e) => {
+   const handleSubmit = async (e) => {
       e.preventDefault();
-      try {
-         setError("");
-         setIsLoading(true);
-         const res = await registerUser(data);
-         navigate("/login");
-      } catch (error) {
-         console.log(error);
-         setError(error.message);
-      } finally {
-         setIsLoading(false);
-      }
+      await register(data);
+      navigate("/login")
    }
 
-   useEffect(() => {
-      setData({
-         username: "",
-         fullname: "",
-         email: "",
-         password: ""
-      })
-   }, [navigate])
+   if (isAuthenticated)
+      return <Navigate to="/quiz" replace />;
+
+   if (isLoading) 
+      return <Loader />;
 
    return(
-      isLoading ? <Loader text="Registering..." /> :
       <section className={`section ${styles.registerPage}`}>
          <h2 className={styles.gameTitle}>QuizRoom</h2>
          <div className={styles.container}>
             <h2>Sign Up</h2>
-            <form className={styles.registrationForm} onSubmit={(e) => register(e)}>
+            <form className={styles.registrationForm} onSubmit={handleSubmit}>
       
                <div className={styles.inputBox}>
                   <label htmlFor="usernameField">Username:</label>
                   <input 
                      type="text" 
+                     id="usernameField"
                      name="username"
-                     id="usernameField" 
-                     onChange={(e)=>setData({...data, username: e.currentTarget.value})} 
+                     onChange={handleInputChange} 
                      value={data.username} required 
                   /> 
                </div>
@@ -67,9 +58,9 @@ function RegisterPage(){
                   <label htmlFor="fullnameField">Full Name:</label>
                   <input 
                      type="text" 
+                     id="fullnameField"
                      name="fullname"
-                     id="fullnameField" 
-                     onChange={(e)=>setData({...data, fullname: e.currentTarget.value})} 
+                     onChange={handleInputChange} 
                      value={data.fullname} required 
                   />
                </div>
@@ -78,9 +69,9 @@ function RegisterPage(){
                   <label htmlFor="emailField">Email:</label>
                   <input 
                      type="email" 
-                     name="email"
-                     id="emailField" 
-                     onChange={(e)=>setData({...data, email: e.currentTarget.value})} 
+                     id="emailField"
+                     name="email" 
+                     onChange={handleInputChange} 
                      value={data.email} required 
                   />
                </div>
@@ -88,10 +79,10 @@ function RegisterPage(){
                <div className={styles.inputBox}>
                   <label htmlFor="passwordField">Password:</label>
                   <input 
-                     type={showPass ? "text" : "password"}  
+                     type={showPass ? "text" : "password"} 
+                     id="passwordField"
                      name="password"
-                     id="passwordField" 
-                     onChange={(e)=>setData({...data, password: e.currentTarget.value})} 
+                     onChange={handleInputChange} 
                      value={data.password} required 
                   />
                   <i

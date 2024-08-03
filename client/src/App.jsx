@@ -1,12 +1,14 @@
 import { createRoutesFromElements, RouterProvider, Route, createBrowserRouter } from 'react-router-dom'
 import { RegisterPage } from './pages/register/RegisterPage'
 import { LogInPage } from './pages/login/LoginPage'
-import { QuizPage } from './pages/QuizPage';
+import { QuizPage } from './pages/Quiz/QuizPage';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import { StartSec } from './pages/QuizPageSections/StartSec';
-import { QuestionSec } from './pages/QuizPageSections/QuestionSec';
-import { EditProfileForm } from './pages/QuizPageSections/EditProfileSec';
+import { StartSec } from './pages/Quiz/StartSec';
+import { QuestionSec } from './pages/Quiz/QuestionSec';
+import { EditProfileForm } from './pages/Quiz/EditProfileSec';
+import { ResultSec } from './pages/Quiz/ResultSec';
+import { Leaderboard } from './pages/Quiz/Leaderboard';
 
 
 function App() {
@@ -48,9 +50,20 @@ function App() {
                   />
 
                   <Route
-                     path='edit-profile'
-                     element={ <EditProfileForm />}
+                     path='result'
+                     element={<ResultSec />}
                   />
+
+                  <Route
+                     path='edit-profile'
+                     element={ <EditProfileForm /> }
+                  />
+
+                  <Route
+                     path='leaderboard'
+                     element={ <Leaderboard /> }
+                  />
+
             </Route>
          </Route>
       )

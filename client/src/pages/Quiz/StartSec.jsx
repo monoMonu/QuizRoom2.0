@@ -1,8 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/Auth";
+import { Link } from "react-router-dom";
 import SideMenu from "../../components/sideMenu/SideMenu";
-import { useQuizData } from "../../context/Quiz";
-import { useState } from "react";
+import { useQuiz } from "../../context/quizContext/useQuiz";
+import { useEffect } from "react";
 
 // Constants
 const quizConfigs = {
@@ -11,11 +10,9 @@ const quizConfigs = {
    numbers: [5, 10, 15, 20, 25, 30]
 }
 
-
 function StartSec(){
 
-   const { user } = useAuth();
-   const { updateQuizData, selections, setSelections } = useQuizData();
+   const { selections, setSelections, resetQuiz } = useQuiz();
    const {difficulties, categories, numbers} = quizConfigs;
 
    const handleSelections = (e) => {
@@ -25,8 +22,17 @@ function StartSec(){
       })
    }
 
+   // resetting 
+   useEffect(() => {
+      resetQuiz();
+   }, [])
+
+   console.log(3); 
+   
    return (
       <section id="home_pg">
+
+         <SideMenu />
 
          <div className="quizControls">
             <h1 className="gameTitle">QuizRoom !
@@ -34,13 +40,14 @@ function StartSec(){
             </h1>
             <span id="logo">?</span>
             <div className="btn_box">
-               <Link to="/quiz/play" replace={true} >
-                  <button type="button" className="btn1 startBtn">START</button>
+               <Link to="/quiz/play">
+                  <button type="button" className="btn2 startBtn">START</button>
                </Link>
 
                <label htmlFor="difficulty">Choose Difficulty Level :</label>
                <select 
-                  name="difficulty"  value={selections.difficulty}
+                  name="difficulty"  
+                  value={selections.difficulty}
                   onChange={handleSelections}
                >
                   {difficulties.map((opt, i) => (
@@ -50,7 +57,8 @@ function StartSec(){
 
                <label htmlFor="category">Choose the Category of Questions :</label>
                <select 
-                  name="category" value={selections.category}
+                  name="category" 
+                  value={selections.category}
                   onChange={handleSelections}
                >
                   {categories.map((opt, i) => (
@@ -60,21 +68,25 @@ function StartSec(){
 
                <label htmlFor="number">Choose Number of Questions :</label>
                <select 
-                  name="amount" value={selections.amount}
+                  name="amount" 
+                  value={selections.amount}
                   onChange={handleSelections}
                >
                   {numbers.map((opt, i) => (
                      <option key={i} value={opt}>{opt}</option>
                   ))}
                </select>
+
                <div className="hz_box sound_box">
-                  <button title="Sound Button" type="button" className="btn1 fas fa-volume-high sound"></button>
-                  <button title="Volume Button" type="button" className="btn1 fas fa-music music"></button>
+                  <button title="Sound Button" type="button" className="btn1">
+                     <i className="fas fa-volume-high sound"></i>
+                  </button>
+                  <button title="Volume Button" type="button" className="btn1">
+                     <i className="fas fa-music music"></i>
+                  </button>
                </div>
             </div>
          </div>
-         
-         <SideMenu />
 
       </section>
    )

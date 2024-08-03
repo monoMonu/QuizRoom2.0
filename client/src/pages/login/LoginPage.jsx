@@ -1,50 +1,38 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import styles from './login.module.css'
-import { loginUser } from '../../actions/userAction';
-import { useAuth } from '../../context/Auth';
 import { Loader } from '../../components/Loader';
+import { useAuth } from '../../context/authContext/useAuth';
 
 
 function LogInPage (){
-
-   const navigate = useNavigate();
-   const [isLoading, setIsLoading] = useState(false);
-   const [error, setError] = useState("");
-   const { updateUser } = useAuth();
-   const [showPass, setShowPass] = useState(false);
    
+   const [showPass, setShowPass] = useState(false);
+   const { error, login, isLoading, isAuthenticated, clearError } = useAuth();
    const [data, setData] = useState({
       emailORusername: "",
       password: ""
    });
-   
-   const login = async (e) => {
-      e.preventDefault(); 
-      try {
-         setError("");
-         setIsLoading(true);
-         const res = await loginUser(data);
-         updateUser(res);
-         navigate("/quiz", { replace: true });
-      } catch (error) {
-         console.error(error);
-         setError(error.message);
-      } finally {
-         setIsLoading(false);
-      }
+
+   const handleInputChange = (e) => {
+      setData({
+         ...data,
+         [e.currentTarget.name]: e.currentTarget.value
+      })
    }
 
-   useEffect(() => {
-      setData({
-         emailORusername: "",
-         password: ""
-      })
-      setError("");
-   }, [navigate])
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+      await login(data);
+   }
+
+   if (isAuthenticated)
+      return <Navigate to="/quiz" replace />;
+
+   if (isLoading) 
+      return <Loader />;
 
    return (
-      isLoading ? <Loader text="Logging in..."/> :
       <section className={styles.loginPage}>
 
          <h2 className={styles.gameTitle}>QuizRoom</h2>
@@ -52,14 +40,13 @@ function LogInPage (){
 
             <h2>Log In</h2>
 
-            <form className={styles.loginForm} onSubmit={(e) => login(e)}>
+            <form className={styles.loginForm} onSubmit={(e) => handleSubmit(e)}>
                <div className={styles.inputBox}>
                   <label htmlFor="emailORusername">Username or Email:</label>
                   <input 
                      name="emailORusername"
-                     type="text" 
-                     id="emailORusername" 
-                     onChange={(e)=>setData({...data, emailORusername: e.currentTarget.value})} 
+                     type="text"
+                     onChange={ handleInputChange } 
                      value={data.emailORusername} required 
                   />
                </div>
@@ -68,9 +55,8 @@ function LogInPage (){
                   <label htmlFor="password">Password:</label>
                   <input 
                      name="password"
-                     type={showPass ? "text" : "password"} 
-                     id="password"  
-                     onChange={(e)=>setData({...data, password: e.currentTarget.value})} 
+                     type={showPass ? "text" : "password"}
+                     onChange={ handleInputChange } 
                      value={data.password} required 
                   />
                   <i

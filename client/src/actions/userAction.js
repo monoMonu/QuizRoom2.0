@@ -3,22 +3,14 @@ import { mainApi } from "../utils/api"
 export const loginUser = async (userData) => {
    try {
       
-      const { data } = await mainApi.post("/user/login", 
-         userData,
-         {
-            headers: {
-               "Content-type": "application/json"
-            }
-         }
-      )
-
+      const { data } = await mainApi.post("/user/login", userData);
       return await data?.data;
 
    } catch (error) {
-      if(error.response.data.statusCode) 
+      if(error?.response?.data?.statusCode) 
          throw new Error(error.response.data.message);
       else 
-         throw new Error("Error while logging user. Please try again")
+         throw new Error("Error while logging in user. Please try again");
    }
 }
 
@@ -26,22 +18,28 @@ export const loginUser = async (userData) => {
 export const registerUser = async (userData) => {
    try {
       
-      const { data } = await mainApi.post("/user/register", 
-         userData,
-         {
-            headers: {
-               "Content-type": "application/json"
-            }
-         }
-      )
-
+      const { data } = await mainApi.post("/user/register", userData);
       return await data.data;
 
    } catch (error) {
-      if(error.response.data.statusCode) 
+      if(error?.response?.data?.statusCode) 
          throw new Error(error.response.data.message);
       else 
          throw new Error("Error while registering user. Please try again")
+   }
+}
+
+export const logoutUser = async () => {
+   try {
+      
+      const { data } = await mainApi.get("/user/logout");
+      return await data?.data;
+
+   } catch (error) {
+      if(error?.response?.data?.statusCode) 
+         throw new Error(error.response.data.message);
+      else 
+         throw new Error("Error while logging out. Please try again")
    }
 }
 
@@ -49,21 +47,15 @@ export const registerUser = async (userData) => {
 export const getUserDetails = async () => {
    try {
       
-      const { data } = await mainApi.get("/user/getuserdetails",
-         {
-            headers: {
-               "Content-type": "application/json"
-            }
-         }
-      )
-
-      return await data.data;
+      const { data } = await mainApi.get("/user/getuserdetails");
+      // console.log(data.data)
+      return await data?.data;
 
    } catch (error) {
-      if(error.response.data.statusCode) 
+      if(error?.response?.data?.statusCode) 
          throw new Error(error.response.data.message);
       else 
-         throw new Error("Error while registering user. Please try again")
+         throw new Error("Error while fetching user details. Please try again")
    }
 }
 
@@ -72,19 +64,12 @@ export const getUserDetails = async () => {
 export const updateUserDetails = async (userData) => {
    try {
       
-      const { data } = await mainApi.put("/user/updateuserdetails",
-         userData,
-         {
-            headers: {
-               "Content-type": "application/json"
-            }
-         }
-      )
-
+      const { data } = await mainApi.put("/user/updateuserdetails", userData );
       return await data.data;
-
+      
    } catch (error) {
-      if(error.response.data.statusCode) 
+      console.log(error)
+      if(error?.response?.data?.statusCode) 
          throw new Error(error.response.data.message);
       else 
          throw new Error("Error while updating user details. Please try again")

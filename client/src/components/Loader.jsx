@@ -1,6 +1,9 @@
 import { useEffect } from "react";
+import { useAuth } from "../context/authContext/useAuth";
 
 export const Loader = ({text}) => {
+
+   const { loaderText } = useAuth();
 
    return (
       <section 
@@ -8,7 +11,7 @@ export const Loader = ({text}) => {
       >
          <div className="loader"></div>
          <p className="loaderText">
-            {text || "Loading..."}
+            {text || loaderText}
          </p>
       </section>
    )
