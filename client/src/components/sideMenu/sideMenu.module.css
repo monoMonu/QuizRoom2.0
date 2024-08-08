@@ -3,11 +3,15 @@
    min-width: 300px;
    max-width: 360px;
    height: 100vh;
-   background-color: rgba(0, 0, 0, 0.3);
-   border-radius: 10px;
+   background: var(--semi-transparent);
+   -webkit-backdrop-filter: blur(20px);
+   backdrop-filter: blur(20px);
+   border-radius: 0 10px 10px 0;
    overflow: hidden;
    box-shadow: 0 .3em .6em rgba(0, 0, 0, 0.2);
    color: var(--text-1);
+   position: relative;
+   z-index: 109;
 }
 
 .profileSection {
@@ -48,6 +52,7 @@
    border-radius: 20px;
    background-color: var(--semi-transparent);
    color: var(--text-1);
+   font-weight: 600;
 }
 
 .highScore span {
@@ -79,7 +84,25 @@
    outline: none;
 }
 
+.themeBtn {
+   position: absolute;
+   top: 1.2rem;
+   right: 1.5rem;
+   z-index: 50;
+}
+
 .copyRight {
    text-align: center;
    font-size: .85em;
+}
+
+@media screen and (max-width: 800px) {
+   .sideMenu {
+      left: -360px;
+      position: absolute;
+      top: 0;
+   }
+   .sideMenu.openMenu {
+      left: 0;
+   }
 }

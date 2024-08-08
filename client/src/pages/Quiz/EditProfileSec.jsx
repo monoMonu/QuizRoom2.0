@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/authContext/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const EditProfileForm = () => {
 
@@ -25,7 +26,7 @@ export const EditProfileForm = () => {
       try {
          setError("");
          updateUser(formData);
-         alert("scuccessfully updated user details"); // Can be improved
+         toast.success("scuccessfully updated user details");
       } catch (error) {
          setError(error?.message || "Error while updating user details");
       }

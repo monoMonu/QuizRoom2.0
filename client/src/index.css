@@ -38,40 +38,54 @@ button:focus, select:focus {
     --lg: 1500px;
     --md: 720px;
     --sm: 576px;
-    
-    /* Dark theme */
+
     --primaryColor: #7986cb;
     --secondaryColor: #9fa8da;
-    --semi-transparent: #9fa8da43;
+    --semi-transparent: #38417743;
     --text-1: #f3f3f3;
     --text-2: #22222b;
     --text-3: #aaaaaf;
-    --bg: linear-gradient(to bottom, #0d133b, #1c204b, #0d133b);
+    --bg: linear-gradient(to bottom, #21212b, #020717);
     --revMode1: #c5cae9;
-    
+}
 
-    /* Light theme */
-    /* --primaryColor:#303f9f;
+.dark-theme {
+    --primaryColor: #7986cb;
+    --secondaryColor: #9fa8da;
+    --semi-transparent: #38417743;
+    --text-1: #f3f3f3;
+    --text-2: #22222b;
+    --text-3: #aaaaaf;
+    --bg: linear-gradient(to bottom, #21212b, #020717);
+    --revMode1: #c5cae9;
+}
+.light-theme {
+    --primaryColor:#303f9f;
     --secondaryColor: #3949ab;
     --semi-transparent: #3949ab44;
     --text-1: #22222b;
     --text-2: #f3f3f3; 
     --text-3: #444;
     --bg: linear-gradient(to bottom, #c5cae9, #ebeaf6, #c5cae9);
-    --revMode1: #0d133b; */
+    --revMode1: #0d133b;
+}
 
+/* Custom react toast styles */
+.custom-toast {
+    background-color: var(--semi-transparent);
+    backdrop-filter: blur(15px);
 }
 
 *::-webkit-scrollbar {
     width: 12px;
-    background: rgba(0, 0, 0, .4);
+    background: var(--text-2);
     border-radius: 12px;
 }
 
 *::-webkit-scrollbar-thumb {
     background-color: var(--primaryColor);
     width: 10px;
-    border: 2.5px var(--dark) solid;
+    border: 2.5px var(--text-2) solid;
     border-radius: 10px;
 }
 
@@ -89,13 +103,12 @@ a {
 }
 
 .btn1 {
-    width: 4.2rem;
-    height: 4.2rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     background-color: var(--secondaryColor);
     color: var(--text-2);
     font: 600 1.5rem 'Comic Neue', "Poppins", sans-serif;
-    margin: 1rem 2rem;
     transition-property: color, background-color, transform;
     transition-duration: .2s;
     display: flex;
@@ -158,7 +171,7 @@ section {
     justify-content: center;
     position: fixed;
     z-index: 101;
-    background-color: rgba(0, 0, 0, .3);
+    background-color: var(--semi-transparent);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     top: 0;
@@ -168,8 +181,8 @@ section {
 .loader {
     width: 100px;
     height: 100px;
-    border: 8px var(--primaryColor) solid;
-    border-color: transparent #fff4 #fff8 #fffa;
+    border: 8px transparent solid;
+    border-color: transparent var(--semi-transparent) var(--secondaryColor) var(--primaryColor);
     border-radius: 50%;
     animation: spin .6s linear infinite;
 }
@@ -181,7 +194,7 @@ section {
 }
 
 .loaderText {
-    color: #eee;
+    color: var(--secondaryColor);
     margin: 30px auto;
     font-size: 1.5rem;
 }
@@ -189,10 +202,41 @@ section {
 /* Loader Page Ends */
 
 /* Starter Page Begins */
+.hamburger {
+    display: none;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 2.2rem;
+    height: 2.2rem;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+}
+
+.bar {
+    width: 90%;
+    height: 3px;
+    background-color: var(--primaryColor);
+    border-radius: 3px;
+    display: block;
+    transition: transform .2s;
+}
+
+.crossHam .bar:nth-child(1) {
+    transform: translateY(160%) rotate(45deg);
+}
+
+.crossHam .bar:nth-child(2) {
+    transform: translateY(-160%) rotate(-45deg);
+}
+
 #home_pg, #result_pg {
     display: flex;
     flex-direction: row;
     overflow: hidden;
+    position: relative;
 }
 
 .quizControls, .quizResults {
@@ -475,7 +519,7 @@ section {
     font-size: 1.5rem;
 }
 #editProfileForm form {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--semi-transparent);
     width: min(90%, var(--sm));
     border-radius: .6rem;
     padding: 1.4rem 1rem .5rem;
@@ -742,7 +786,7 @@ section {
     width: 100vw;
     height: 100vh;
     position: fixed;
-    z-index: 102;
+    z-index: 110;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, .4);
@@ -821,6 +865,34 @@ section {
     margin: .5rem 3rem;
 }
 
+.sound_box {
+    background-color: var(--semi-transparent);
+    width: 8.4rem;
+    margin: 2rem auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 4.2rem;
+    padding: .25rem;
+}
+
+.musicCross {
+    opacity: 0.6;
+}
+
+.musicCross::after {
+    content: "";
+    width: 2px;
+    height: 3rem;
+    background: var(--text-2);
+    box-shadow: -1px 0 var(--light);
+    position: absolute;
+    top: .9rem;
+    left: .9rem;
+    transform-origin: center top;
+    transform: rotate(-45deg);
+}
+
 /* Leaderboard Starts */
 .leaderboardSec {
     display: flex;
@@ -851,7 +923,6 @@ section {
 .l-title {
     font-size: 2.6rem;
     text-align: center;
-    color: var(--text-1);
     position: relative;
     z-index: 10;
 }
@@ -881,13 +952,16 @@ section {
     border-radius: 5px;
 }
 
-.l-rank, .l-name, .l-score {
+.l-rank, .l-user, .l-score {
     background: var(--semi-transparent);
     background: var(--primaryColor);
-    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 5px;
     text-align: center;
     font-weight: bold;
+    height: 3.8rem;
 }
 
 .l-rank {
@@ -896,16 +970,33 @@ section {
     width: 3.4rem;
 }
 
-.l-name {
+.l-user {
     font-size: 1.1rem;
     color: var(--text-2);
     flex: 1;
-    text-align: left;
+    justify-content: flex-start;
+    padding: 0 1rem;
+}
+
+.l-user>img {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    margin-right: .8rem;
 }
 
 .l-score {
     min-width: 5cap;
     color: var(--text-2);
+}
+
+.l-name b, .l-name i {
+    display: block;
+    text-align: left;
+}
+.l-name i {
+    color: rgba(0, 0, 0, .5);
+    font-size: .85rem;
 }
 
 .pagination {
@@ -930,6 +1021,11 @@ section {
 
 /* Result Page Ends */
 
+@media screen and (max-width: 800px) {
+    .hamburger {
+        display: flex;
+    }
+}
 
 /* --- Come from Down Page Animation --- 
 @keyframes come-from-down{

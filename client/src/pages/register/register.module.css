@@ -10,7 +10,7 @@
 }
 
 .gameTitle{
-   color: var(--light);
+   color: var(--secondaryColor);
    font-family: 'Rock Salt', 'Poppins', sans-serif;
    font-size: 2.5em;
 }
@@ -19,7 +19,7 @@
    max-width: 600px;
    width: 100%;
    padding: 0 1.5em;
-   color: var(--light);
+   color: var(--secondaryColor);
 }
 
 .container h2{
@@ -62,7 +62,7 @@ input{
    border-radius: 3em;
    padding: 1em 2em 1em 1.4em;
    background: #aaa3;
-   color: var(--light);
+   color: var(--secondaryColor);
 }
 
 input:focus{
@@ -91,10 +91,10 @@ button [type="submit"] {
 .alreadyAccount{
    text-align: center;
    font-size: .9em;
-   color: #8f8f8f;
+   color: var(--text-1);
 }
 .alreadyAccount a{
    text-decoration: none;
-   color: var(--light);
+   color: var(--secondaryColor);
 }
 

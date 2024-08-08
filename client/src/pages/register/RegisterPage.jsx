@@ -40,7 +40,7 @@ function RegisterPage(){
       <section className={`section ${styles.registerPage}`}>
          <h2 className={styles.gameTitle}>QuizRoom</h2>
          <div className={styles.container}>
-            <h2>Sign Up</h2>
+            <h2>Register</h2>
             <form className={styles.registrationForm} onSubmit={handleSubmit}>
       
                <div className={styles.inputBox}>

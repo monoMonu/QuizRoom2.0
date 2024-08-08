@@ -73,7 +73,7 @@ function ResultSec(){
                   onClick={() => setShowPreview(!showPreview)}
                > PREVIEW </button>
             </div>
-            <div className="hz_box homeRestart_box sound_box">
+            <div className="hz_box homeRestart_box">
                <Link to="/quiz">
                   <button title="homeIcon" type="button" id="homeBtn" className="btn1">
                      <i className="fas fa-home"></i>

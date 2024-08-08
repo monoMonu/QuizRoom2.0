@@ -3,10 +3,11 @@ import styles from './sideMenu.module.css';
 import { useAuth } from '../../context/authContext/useAuth';
 import { Link } from 'react-router-dom';
 import { useQuiz } from '../../context/quizContext/useQuiz';
+import { useTheme } from '../../context/theme/useTheme';
 
 
-const SideMenu = () => {
-
+const SideMenu = ({open=false}) => {
+   const { theme, toggleTheme } = useTheme();
    const { user, isLoading, logout, error } = useAuth();
    const { highScore } = useQuiz();
 
@@ -16,7 +17,10 @@ const SideMenu = () => {
       return <Loader text="Logging out..."/>;
 
    return (
-      <div className={styles.sideMenu}>
+      <div className={`${styles.sideMenu} ${open ? styles.openMenu : ""}`}>
+         <button onClick={toggleTheme} className={styles.themeBtn}>
+            <i className={theme ? "fas fa-sun" : "fas fa-moon"}></i>
+         </button>
          <div className={styles.profileSection}>
             <img src={user.avatar} alt="User Profile Picture" className={styles.profilePic} />
             <div className={styles.profileInfo}>

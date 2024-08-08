@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SideMenu from "../../components/sideMenu/SideMenu";
 import { useQuiz } from "../../context/quizContext/useQuiz";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Constants
 const quizConfigs = {
@@ -12,8 +12,9 @@ const quizConfigs = {
 
 function StartSec(){
 
-   const { selections, setSelections, resetQuiz } = useQuiz();
+   const { selections, setSelections, resetQuiz, toggleMusicState, musicState } = useQuiz();
    const {difficulties, categories, numbers} = quizConfigs;
+   const [isNavOpen, setIsNavOpen] = useState(false);
 
    const handleSelections = (e) => {
       setSelections({
@@ -22,18 +23,25 @@ function StartSec(){
       })
    }
 
+   const hamburgerHandler = () => {
+      setIsNavOpen(!isNavOpen);
+   }
+
    // resetting 
    useEffect(() => {
       resetQuiz();
    }, [])
-
-   console.log(3); 
    
    return (
       <section id="home_pg">
 
-         <SideMenu />
+         <SideMenu open={isNavOpen} />
 
+         <button className={`hamburger ${isNavOpen ? "crossHam" : ""}`} onClick={hamburgerHandler}>
+            <span className="bar bar1"></span>
+            <span className="bar bar2"></span>
+         </button>
+         
          <div className="quizControls">
             <h1 className="gameTitle">QuizRoom !
                <p>Take a Challenge, test your knowledge</p>
@@ -77,12 +85,17 @@ function StartSec(){
                   ))}
                </select>
 
-               <div className="hz_box sound_box">
-                  <button title="Sound Button" type="button" className="btn1">
+               <div className="sound_box" style={{ justifyContent: musicState ? "flex-start" : "flex-end" }}>
+                  {/* <button title="Sound Button" type="button" className="btn1">
                      <i className="fas fa-volume-high sound"></i>
-                  </button>
-                  <button title="Volume Button" type="button" className="btn1">
-                     <i className="fas fa-music music"></i>
+                  </button> */}
+                  <button 
+                     title="Volume Button" 
+                     type="button" 
+                     className={`btn1 ${musicState ? "musicCross" : ""}`}
+                     onClick={toggleMusicState}
+                  >
+                     <i className="fas fa-music"></i>
                   </button>
                </div>
             </div>

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useEffect, useRef } from 'react';
-import quizReducer, { scoreReducer } from '../../reducers/quizReducer';
+import { musicReducer, quizReducer, scoreReducer } from '../../reducers/quizReducer';
 import { getScoreStats } from '../../actions/quizAction';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,7 +20,11 @@ const initQuizState = {
 
 const initScoreState = {
    score: 0,
-   highScore: 0
+   highScore: 0,
+}
+
+const initMusicState = {
+   musicState: 1
 }
 
 export const QuizContext = createContext();
@@ -34,6 +38,7 @@ export const QuizProvider = ({ children }) => {
    });
 
    const [scoreState, dispatchScore] = useReducer(scoreReducer, initScoreState);
+   const [musicState, dispatchMusic] = useReducer(musicReducer, initMusicState);
 
    const initializedRef = useRef(false);
 
@@ -89,7 +94,7 @@ export const QuizProvider = ({ children }) => {
    }, [state.currQuesInd])
 
    return (
-      <QuizContext.Provider value={{ state , dispatch, scoreState, dispatchScore }}>
+      <QuizContext.Provider value={{ state, dispatch, scoreState, dispatchScore, musicState, dispatchMusic }}>
          {children}
       </QuizContext.Provider>
    );

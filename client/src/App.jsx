@@ -9,6 +9,7 @@ import { QuestionSec } from './pages/Quiz/QuestionSec';
 import { EditProfileForm } from './pages/Quiz/EditProfileSec';
 import { ResultSec } from './pages/Quiz/ResultSec';
 import { Leaderboard } from './pages/Quiz/Leaderboard';
+import { useQuiz } from './context/quizContext/useQuiz';
 
 
 function App() {

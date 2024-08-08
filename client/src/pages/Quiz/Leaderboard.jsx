@@ -61,10 +61,18 @@ export const Leaderboard = () => {
                {leaders.map((user, i) => (
                   <div key={i} className="leaderboard-item">
                      <span className="l-rank">{i + 1}.</span>
-                     <span className="l-name">
-                        {["🥇", "🥈", "🥉"][i]}
-                        &nbsp;{user.username}
-                     </span>
+                     <div className="l-user">
+                        <img src={user.avatar} alt={`profile pic of ${user.username}`} />
+                        <span className="l-name">
+                           <b>
+                              &nbsp;{user.fullname}
+                              {["🥇", "🥈", "🥉"][i]}
+                           </b> 
+                           <i>
+                              &nbsp;{user.username}
+                           </i>
+                        </span>
+                     </div>
                      <span className="l-score">{user.highScore}</span>
                   </div>
                ))}

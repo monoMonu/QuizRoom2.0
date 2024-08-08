@@ -1,6 +1,6 @@
 import { shuffleArray } from "../utils/helperFunctions";
 
-const quizReducer = (state, action) => {
+export const quizReducer = (state, action) => {
    switch (action.type) {
       case 'SET_SELECTIONS':
          return { 
@@ -95,7 +95,20 @@ export const scoreReducer = (state, action) => {
             ...state,
             highScore: action.payload
          }
+      default:
+         return state;
    }
 }
 
-export default quizReducer;
+
+export const musicReducer = (state, action) => {
+   switch(action.type){
+      case 'SET_MUSIC_STATE': 
+         return {
+            ...state, 
+            musicState: !state.musicState
+         };
+      default:
+         return state;
+   }
+}

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useAuth } from "../context/authContext/useAuth";
 
 export const Loader = ({text}) => {

@@ -2,7 +2,7 @@ import { useContext, useReducer } from "react"
 import { QuizContext } from "./Quiz"
 
 export const useQuiz = () => {
-   const { state, dispatch, scoreState, dispatchScore } = useContext(QuizContext);
+   const { state, dispatch, scoreState, dispatchScore, musicState, dispatchMusic } = useContext(QuizContext);
 
    const setSelections = (selections) => dispatch({ type: 'SET_SELECTIONS', payload: selections });
    const setQuestions = async (questions) => dispatch({ type: 'SET_QUESTIONS', payload: questions });
@@ -22,6 +22,8 @@ export const useQuiz = () => {
          dispatchScore({ type: 'UPDATE_HIGHSCORE', payload: score });
    }
 
+   const toggleMusicState = () => dispatchMusic({ type: 'SET_MUSIC_STATE'})
+
 
    return {
       ...state,
@@ -34,7 +36,9 @@ export const useQuiz = () => {
       finishQuiz,
       resetQuiz,
       ...scoreState,
-      updateScore
+      updateScore,
+      ...musicState, 
+      toggleMusicState
    }
 
 }

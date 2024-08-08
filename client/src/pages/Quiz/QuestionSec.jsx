@@ -4,6 +4,7 @@ import { Loader } from "../../components/Loader";
 import { useQuiz } from "../../context/quizContext/useQuiz";
 import { fetchQuizData, updatePlayNum } from "../../actions/quizAction";
 import { QuestionBox } from "../../components/QuestionBox";
+import { toast } from "react-toastify";
 
 
 function QuestionSec() {
@@ -25,7 +26,7 @@ function QuestionSec() {
 
    useEffect(() => {
       if(error) {
-         console.log(error); //Improve
+         toast.warn(error);
          navigate(-1, { replace: true });
       }
    }, [error]);
@@ -40,7 +41,7 @@ function QuestionSec() {
                <button 
                   type="button" id="quit"
                   onClick={() => {
-                     const res = confirm("Are sure you want to quit ?"); // can improve with custom propmt box
+                     const res = confirm("Are sure you want to quit ?");
                      if (res) navigate('/quiz', { replace: true });
                   }}
                > QUIT </button>
