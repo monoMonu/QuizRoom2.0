@@ -46,7 +46,7 @@ function ResultSec(){
 
    return (
       
-      <section id="result_pg">
+      <section className="resultPage">
          <SideMenu />
          <div className="quizResults">
             <h1 className="heading">RESULT</h1>

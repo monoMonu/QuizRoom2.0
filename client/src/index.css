@@ -32,8 +32,6 @@ button:focus, select:focus {
 
     --light: #eee;
     --dark: #22222b;
-    --progress: 0;
-    --timeFill: 0%;
 
     --lg: 1500px;
     --md: 720px;
@@ -66,7 +64,7 @@ button:focus, select:focus {
     --text-1: #22222b;
     --text-2: #f3f3f3; 
     --text-3: #444;
-    --bg: linear-gradient(to bottom, #c5cae9, #ebeaf6, #c5cae9);
+    --bg: linear-gradient(to bottom, #c5cae9, #ebeaf6, #b5bbde);
     --revMode1: #0d133b;
 }
 
@@ -232,11 +230,12 @@ section {
     transform: translateY(-160%) rotate(-45deg);
 }
 
-#home_pg, #result_pg {
+.homePage, .resultPage, .leaderboardPage {
     display: flex;
     flex-direction: row;
     overflow: hidden;
     position: relative;
+    background: var(--bg);
 }
 
 .quizControls, .quizResults {
@@ -396,7 +395,7 @@ section {
 
 /* Profile section Starts */
 #profile_sec,
-#editProfileForm {
+.editProfileForm {
     top: 0;
     left: 0;
     z-index: 50;
@@ -508,17 +507,17 @@ section {
 
 
 /* Edit Profile section Starts */
-#editProfileForm {
+.editProfileForm {
     background: var(--bg);
     place-items: center;
 }
 
-#editProfileForm h3 {
+.editProfileForm h3 {
     width: min(90%, var(--sm));
     text-align: right;
     font-size: 1.5rem;
 }
-#editProfileForm form {
+.editProfileForm form {
     background-color: var(--semi-transparent);
     width: min(90%, var(--sm));
     border-radius: .6rem;
@@ -533,13 +532,13 @@ section {
     flex-direction: column;
 }
 
-#editProfileForm label {
+.editProfileForm label {
     font-size: 1.2rem;
     font-weight: 600;
     padding: .5rem .2rem;
 }
 
-#editProfileForm input {
+.editProfileForm input {
     background: transparent;
     border-bottom: 1px var(--primaryColor) solid;
     padding: .5rem 0 .6rem .2rem;
@@ -579,7 +578,7 @@ section {
 
 
 /* Game Page */
-#ques_pg,
+.quesPage,
 .progress_box,
 .ques_box,
 .vt_box,
@@ -589,9 +588,10 @@ section {
     align-items: center;
 }
 
-#ques_pg {
+.quesPage {
     justify-content: center;
     display: flex;
+    background: var(--bg);
     animation: come-from-down .3s;
 }
 
@@ -894,12 +894,13 @@ section {
 }
 
 /* Leaderboard Starts */
-.leaderboardSec {
+.leaderboard {
     display: flex;
     flex-direction: column;
+    max-width: 1000px;
     height: 100vh;
-    max-width: 800px;
     margin: 0 auto;
+    flex: 1;
 }
 
 .topBar {
@@ -995,7 +996,7 @@ section {
     text-align: left;
 }
 .l-name i {
-    color: rgba(0, 0, 0, .5);
+    color: rgb(38, 38, 38);
     font-size: .85rem;
 }
 

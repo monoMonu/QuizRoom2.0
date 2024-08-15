@@ -4,7 +4,7 @@ export const loginUser = async (userData) => {
    try {
       
       const { data } = await mainApi.post("/user/login", userData);
-      return await data?.data;
+      return await data;
 
    } catch (error) {
       if(error?.response?.data?.statusCode) 
@@ -19,7 +19,7 @@ export const registerUser = async (userData) => {
    try {
       
       const { data } = await mainApi.post("/user/register", userData);
-      return await data.data;
+      return await data;
 
    } catch (error) {
       if(error?.response?.data?.statusCode) 
@@ -33,7 +33,7 @@ export const logoutUser = async () => {
    try {
       
       const { data } = await mainApi.get("/user/logout");
-      return await data?.data;
+      return await data;
 
    } catch (error) {
       if(error?.response?.data?.statusCode) 
@@ -49,7 +49,7 @@ export const getUserDetails = async () => {
       
       const { data } = await mainApi.get("/user/getuserdetails");
       // console.log(data.data)
-      return await data?.data;
+      return await data;
 
    } catch (error) {
       if(error?.response?.data?.statusCode) 
@@ -63,12 +63,11 @@ export const getUserDetails = async () => {
 
 export const updateUserDetails = async (userData) => {
    try {
-      
+
       const { data } = await mainApi.put("/user/updateuserdetails", userData );
-      return await data.data;
+      return await data;
       
    } catch (error) {
-      console.log(error)
       if(error?.response?.data?.statusCode) 
          throw new Error(error.response.data.message);
       else 

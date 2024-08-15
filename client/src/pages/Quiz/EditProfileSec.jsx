@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/authContext/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const EditProfileForm = () => {
-
-   const { user, updateUser } = useAuth();
-   const [error, setError] = useState("");
+   const { user, updateUser, clearError } = useAuth();
    const navigate = useNavigate();
    const [formData, setFormData] = useState({
       username: user.username,
       fullname: user.fullname,
       email: user.email
    });
+   const [isChanged, setIsChanged] = useState(false);
+
+   useEffect(() => {
+      // Check if form data is different from user data
+      const hasChanged = Object.keys(formData).some(key => formData[key] != user[key]);
+      setIsChanged(hasChanged);
+   }, [formData, user]);
 
    const handleInputChange = (e) => {
       const { id, value } = e.target;
@@ -21,30 +26,24 @@ export const EditProfileForm = () => {
          [id]: value,
       });
    };
-   
+
    const handleFormSubmit = async (e) => {
-      try {
-         setError("");
-         updateUser(formData);
-         toast.success("scuccessfully updated user details");
-      } catch (error) {
-         setError(error?.message || "Error while updating user details");
+      const res = await updateUser(formData);
+      if(!(res.statusCode==200)) {
+         toast.error(res.message);
+         clearError();
+      } else {
+         toast.success(res.message);
       }
-   }
+   };
 
    const onSubmit = (e) => {
       e.preventDefault();
-      handleFormSubmit(formData);
+      handleFormSubmit();
    };
 
-   const handleOutOfBoxClick = (e) => {
-      if(e.currentTarget === e.target) {
-         navigate(-1);
-      }
-   }
-   
    return (
-      <section id="editProfileForm" onClick={handleOutOfBoxClick}>
+      <section className="editProfileForm">
          <h3>Edit Profile Details...</h3>
          <form onSubmit={onSubmit}>
             <div className="inputBox">
@@ -75,16 +74,23 @@ export const EditProfileForm = () => {
                />
             </div>
 
-            <p className="errorBox">{error}</p>
+            {/* <p className="errorBox">{error}</p> */}
 
             <div className="buttonBox">
-               <button 
-                  type="button" className="cancelBtn"
+               <button
+                  type="button"
+                  className="cancelBtn"
                   onClick={() => navigate(-1, { replace: true })}
-               > Cancel </button>
-               <button 
-                  type="submit" className="saveBtn"
-               > Save </button>
+               >
+                  Cancel
+               </button>
+               <button
+                  type="submit"
+                  className="saveBtn"
+                  disabled={!isChanged} 
+               >
+                  Save
+               </button>
             </div>
          </form>
       </section>

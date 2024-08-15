@@ -9,9 +9,11 @@ export const useAuth = () => {
       try {
          dispatch({ type: 'LOADING', payload: 'Logging in...' });
          const data = await loginUser(userData);
-         dispatch({ type: 'LOGIN_SUCCESS', payload: data });
+         dispatch({ type: 'LOGIN_SUCCESS', payload: data.data });
+         return data;
       } catch (error) {
          dispatch({ type: 'LOGIN_FAIL', payload: error.message });
+         return error;
       }
    };
 
@@ -19,9 +21,11 @@ export const useAuth = () => {
       try {
          dispatch({ type: 'LOADING', payload: 'Registering user...' });
          const data = await registerUser(userData);
-         dispatch({ type: 'REGISTER_SUCCESS', payload: data });
+         dispatch({ type: 'REGISTER_SUCCESS', payload: data.data });
+         return data;
       } catch (error) {
          dispatch({ type: 'REGISTER_FAIL', payload: error.message });
+         return error;
       }
    };
 
@@ -30,9 +34,10 @@ export const useAuth = () => {
          dispatch({ type: 'LOADING', payload: 'Logging out...' });
          const data = await logoutUser();
          dispatch({ type: 'LOGOUT' });
-         return data.message;
+         return data;
       } catch (error) {
          dispatch({ type: 'LOGOUT_ERROR', payload: error.message });
+         return error;
       }
    };
 
@@ -40,9 +45,11 @@ export const useAuth = () => {
       try {
          dispatch({ type: 'LOADING', payload: 'Updating User Details...' });
          const data = await updateUserDetails(userData);
-         dispatch({ type: 'UPDATE_USER_SUCCESS', payload: data })
+         dispatch({ type: 'UPDATE_USER_SUCCESS', payload: data.data })
+         return data;
       } catch (error) {
          dispatch({ type: 'ERROR', payload: error.message });
+         return error;
       }
    }
 

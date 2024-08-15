@@ -1,17 +1,28 @@
 import React from 'react';
 import styles from './sideMenu.module.css';
 import { useAuth } from '../../context/authContext/useAuth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useQuiz } from '../../context/quizContext/useQuiz';
 import { useTheme } from '../../context/theme/useTheme';
+import { toast } from 'react-toastify';
 
 
 const SideMenu = ({open=false}) => {
+   const navigate = useNavigate();
    const { theme, toggleTheme } = useTheme();
-   const { user, isLoading, logout, error } = useAuth();
+   const { user, isLoading, logout, clearError } = useAuth();
    const { highScore } = useQuiz();
 
-   if (error) alert("Error while logging out");
+   const handleLogout = async () => {
+      const res = await logout();
+      if(!(res.statusCode===200)){
+         toast.error(res.message);
+         clearError();
+      } else {   
+         toast.success(res.message);
+         navigate("/login");
+      }
+   }
 
    if (isLoading) 
       return <Loader text="Logging out..."/>;
@@ -40,7 +51,7 @@ const SideMenu = ({open=false}) => {
                <button className={styles.navBtn}>Leaderboard</button>
             </Link>
             <Link to="/login" replace>
-               <button className={styles.navBtn} onClick={logout}>Log Out</button>
+               <button className={styles.navBtn} onClick={handleLogout}>Log Out</button>
             </Link>
          </nav>
          <p className={styles.copyRight}>

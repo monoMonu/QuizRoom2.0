@@ -9,7 +9,7 @@ import { QuestionSec } from './pages/Quiz/QuestionSec';
 import { EditProfileForm } from './pages/Quiz/EditProfileSec';
 import { ResultSec } from './pages/Quiz/ResultSec';
 import { Leaderboard } from './pages/Quiz/Leaderboard';
-import { useQuiz } from './context/quizContext/useQuiz';
+import LandingPage from './pages/LandingPage/landingPage';
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
          <Route errorElement={<NotFoundPage />}>
             <Route
                path='/'
-               element={<div>Hello World, This is Home page</div> } // Landing page
+               element={<LandingPage />}
             />
 
             <Route 

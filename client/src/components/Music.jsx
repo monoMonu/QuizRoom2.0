@@ -11,8 +11,10 @@ export const Music = () => {
 
    useEffect(() => {
       if (musicState) {
-         musicRef.current.pause();
-         toast.info("Music is OFF");
+         if(!musicRef.current.paused) {
+            musicRef.current.pause();
+            toast.info("Music is OFF");
+         }
       } else {
          musicRef.current.play();
          toast.info("Music is ON");

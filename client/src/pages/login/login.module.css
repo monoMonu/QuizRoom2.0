@@ -62,12 +62,12 @@ input{
    border: none;
    border-radius: 3em;
    padding: 1em 2em 1em 1.4em;
-   background: var(--semi-transparent);
-   color: var(--light);
+   background: #38417743;
+   color: var(--secondaryColor);
 }
 
 input:focus{
-   background: var(--secondaryColor);
+   background: #38417767;
 }
 
 .errorBox {

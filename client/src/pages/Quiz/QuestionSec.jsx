@@ -35,7 +35,7 @@ function QuestionSec() {
       return <Loader text="Fetching Questions..."/>;
    
    return (
-      <section id="ques_pg">
+      <section className="quesPage">
          <div className="progress_box">
             <div className="quitNnum">
                <button 

@@ -189,6 +189,14 @@ const updateUserDetails = asyncHandler( async (req, res) => {
    if(!fullname && !username && !email)
       throw new ApiError(400, "Nothing is updated");
 
+   const existingUser = await User.findOne({
+      $or: [{ username }, { email }]
+   });
+
+   if (existingUser) {
+      throw new ApiError(400, "Username or email is already used by another account");
+   }
+
    const user = await User.findByIdAndUpdate(
       req.user?._id,
       {

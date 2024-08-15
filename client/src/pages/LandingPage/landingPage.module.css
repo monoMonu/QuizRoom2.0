@@ -1,0 +1,42 @@
+
+.landingPageWrap {
+   text-align: center;
+   padding: 10px 20px;
+   background: var(--bg);
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.header {
+   background: var(--semi-transparent);
+   color: var(--text-1);
+   padding: 50px;
+   border-radius: 8px;
+}
+
+.header h1 {
+   margin: 0;
+   font-size: 3rem;
+}
+
+.header p {
+   font-size: 1.3rem;
+   margin: 20px 0;
+}
+
+.ctaButton {
+   display: inline-block;
+   padding: 15px 30px;
+   font-size: 1.25rem;
+   color: var(--text-2);
+   background: var(--primaryColor);
+   border-radius: 5px;
+   text-decoration: none;
+   margin: 1rem auto 0;
+}
+
+.ctaButton:hover {
+   background: var(--secondaryColor);
+}

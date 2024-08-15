@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Link, Navigate, redirect, useNavigate} from 'react-router-dom'
 import styles from './register.module.css'
 import { Loader } from '../../components/Loader';
 import { useAuth } from '../../context/authContext/useAuth';
+import { toast } from 'react-toastify';
 
 
 function RegisterPage(){
 
    const navigate = useNavigate();
    const [showPass, setShowPass] = useState(false);
-   const { error, register, isLoading, isAuthenticated } = useAuth();
+   const { register, isLoading, isAuthenticated, clearError } = useAuth();
    const [data, setData] = useState({
       username: "",
       fullname: "",
@@ -26,8 +27,14 @@ function RegisterPage(){
   
    const handleSubmit = async (e) => {
       e.preventDefault();
-      await register(data);
-      navigate("/login")
+      const res = await register(data);
+      if(!(res.statusCode===200)){
+         toast.error(res.message);
+         clearError();
+      } else {   
+         toast.success(res.message);
+         navigate("/login");
+      }
    }
 
    if (isAuthenticated)
@@ -70,7 +77,7 @@ function RegisterPage(){
                   <input 
                      type="email" 
                      id="emailField"
-                     name="email" 
+                     name="email"
                      onChange={handleInputChange} 
                      value={data.email} required 
                   />
@@ -92,7 +99,7 @@ function RegisterPage(){
                   ></i>
                </div>
 
-               <p className={styles.errorBox}>{error}</p>
+               {/* <p className={styles.errorBox}>{error}</p> */}
       
                <button type="submit">Register</button>
 

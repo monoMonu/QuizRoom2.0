@@ -33,7 +33,7 @@ function StartSec(){
    }, [])
    
    return (
-      <section id="home_pg">
+      <section className="homePage">
 
          <SideMenu open={isNavOpen} />
 

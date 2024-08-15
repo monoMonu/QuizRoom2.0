@@ -3,12 +3,13 @@ import { Link, Navigate } from 'react-router-dom';
 import styles from './login.module.css'
 import { Loader } from '../../components/Loader';
 import { useAuth } from '../../context/authContext/useAuth';
+import { toast } from 'react-toastify';
 
 
 function LogInPage (){
    
    const [showPass, setShowPass] = useState(false);
-   const { error, login, isLoading, isAuthenticated, clearError } = useAuth();
+   const { login, isLoading, isAuthenticated, clearError } = useAuth();
    const [data, setData] = useState({
       emailORusername: "",
       password: ""
@@ -23,7 +24,13 @@ function LogInPage (){
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-      await login(data);
+      const res = await login(data);
+      if(!(res.statusCode===200)){
+         toast.error(res.message);
+         clearError();
+      } else {   
+         toast.success(res.message);
+      }
    }
 
    if (isAuthenticated)
@@ -66,7 +73,7 @@ function LogInPage (){
                   ></i>
                </div>
 
-               <p className={styles.errorBox}>{error}</p>
+               {/* <p className={styles.errorBox}>{error}</p> */}
 
                <button 
                   type="submit"

@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
          try {
             dispatch({ type: 'LOADING' });
             const userData = await getUserDetails();
-            dispatch({ type: 'LOGIN_SUCCESS', payload: userData });
+            dispatch({ type: 'LOGIN_SUCCESS', payload: userData.data });
          } catch (error) {
             dispatch({ type: 'AUTH_ERROR' });
          }

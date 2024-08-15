@@ -52,6 +52,7 @@ const authReducer = (state, action) => {
          return {
             ...state, 
             error: action.payload,
+            isLoading: false
          }
       default:
          return state;
