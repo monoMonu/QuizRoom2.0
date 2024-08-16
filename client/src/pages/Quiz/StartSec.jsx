@@ -85,14 +85,14 @@ function StartSec(){
                   ))}
                </select>
 
-               <div className="sound_box" style={{ justifyContent: musicState ? "flex-start" : "flex-end" }}>
+               <div className="sound_box" style={{ justifyContent: musicState ? "flex-end" : "flex-start" }}>
                   {/* <button title="Sound Button" type="button" className="btn1">
                      <i className="fas fa-volume-high sound"></i>
                   </button> */}
                   <button 
                      title="Volume Button" 
                      type="button" 
-                     className={`btn1 ${musicState ? "musicCross" : ""}`}
+                     className={`btn1 ${musicState ? "" : "musicCross"}`}
                      onClick={toggleMusicState}
                   >
                      <i className="fas fa-music"></i>

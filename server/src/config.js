@@ -11,6 +11,7 @@ const config = {
    port: process.env.PORT,
    mongodb_uri: process.env.MONGODB_URI,
    node_env: process.env.NODE_ENV,
+   client: process.env.CLIENT,
 
    // token details
    access_token_secret: process.env.ACCESS_TOKEN_SECRET,

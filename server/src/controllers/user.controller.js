@@ -7,6 +7,13 @@ import jwt from 'jsonwebtoken'
 import { uploadImgOnCloudinary } from '../utils/cloudinary.js';
 import config from '../config.js';
 
+const randAvatars = [
+   "https://i.ibb.co/r7P3mGQ/fox-6249911.png",
+   "https://i.ibb.co/Z1VDspm/parrot-4015657.png",
+   "https://i.ibb.co/SBbfncD/eagle-1722599.png",
+   "https://i.ibb.co/3zc214y/pet-9108014.png",
+   "https://i.ibb.co/0Xg1M2D/penguin-6250524.png"
+]
 
 const generateTokens = async (id) => {
    const user =  await User.findById(id).select('-password');
@@ -74,7 +81,7 @@ const registerUser = asyncHandler(async (req, res)=>{
       username: username.toLowerCase(),
       fullname: fullname.trim(),
       password: await bcrypt.hash(password, 10),
-      avatar: avatar?.secure_url || "https://i.ibb.co/r7P3mGQ/fox-6249911.png"
+      avatar: avatar?.secure_url || randAvatars[Math.floor(Math.random()*5)]
    })
 
    const createdUser = await User.findById(user._id).select("-password");

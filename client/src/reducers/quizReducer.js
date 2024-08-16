@@ -100,15 +100,3 @@ export const scoreReducer = (state, action) => {
    }
 }
 
-
-export const musicReducer = (state, action) => {
-   switch(action.type){
-      case 'SET_MUSIC_STATE': 
-         return {
-            ...state, 
-            musicState: !state.musicState
-         };
-      default:
-         return state;
-   }
-}

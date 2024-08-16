@@ -71,22 +71,19 @@ const SideMenu = ({open=false}) => {
 const ThemePalatte = () => {
 
    const { theme, setNewTheme } = useTheme();
-   const [isBoxOpen, setIsBoxOpen] = useState(1);
 
    return (
       <div className={`${styles.themePalatte} ${styles.currentTheme}`}>
          <h3>Select Theme</h3>
-         {isBoxOpen && (
-            <div className={styles.themeBox}>
-               {Array(4).fill(0).map((el, i) => (
-                  <button
-                     key={i}
-                     onClick={() => setNewTheme(i+1)}
-                     className={`${styles.themeOption} ${theme==i+1 ? styles.selected : ""} ${styles[`theme-${i+1}`]}`}
-                  > </button>
-               ))}
-            </div>
-         )}
+         <div className={styles.themeBox}>
+            {Array(4).fill(0).map((el, i) => (
+               <button
+                  key={i}
+                  onClick={() => setNewTheme(i+1)}
+                  className={`${styles.themeOption} ${theme==i+1 ? styles.selected : ""} ${styles[`theme-${i+1}`]}`}
+               > </button>
+            ))}
+         </div>
       </div>
    );
 }

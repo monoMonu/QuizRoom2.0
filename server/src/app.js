@@ -2,6 +2,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import errorHandler from './middlewares/errorHandler.js';
+import config from './config.js';
 const app = express();
 
 // Middlewares
@@ -11,7 +12,7 @@ app.use(cookieParser());
 
 app.use(cors({
    credentials: true,
-   origin: ['http://127.0.0.1:5173', 'http://localhost:5173', 'https://quizroom.vercel.app'],
+   origin: [config.client],
    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
    optionsSuccessStatus: 200,
 }));
