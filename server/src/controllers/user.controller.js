@@ -127,7 +127,7 @@ const logInUser = asyncHandler(async (req, res) => {
    const loggedInUser = await User.findById(user._id).select('-password -refreshToken');
 
    const options = {
-      httpOnly: true, secure: config.node_env==="production", sameSite: 'none', maxAge: 24*60*60*1000
+      httpOnly: true, secure: true, sameSite: 'none', maxAge: 24*60*60*1000
    }
 
    res
@@ -158,7 +158,7 @@ const logOutUser = asyncHandler( async (req, res) => {
    )
 
    const options = {
-      httpOnly: true, secure: config.node_env==="production", sameSite: 'none',  maxAge: new Date(0)
+      httpOnly: true, secure: true, sameSite: 'none',  maxAge: new Date(0)
    }
 
    return res
@@ -190,11 +190,18 @@ const updateUserDetails = asyncHandler( async (req, res) => {
       throw new ApiError(400, "Nothing is updated");
 
    const existingUser = await User.findOne({
-      $or: [{ username }, { email }]
+      $or: [{ username }, { email }],
+      _id: { $ne: req.user?._id }, // Exclude the current user
    });
 
    if (existingUser) {
-      throw new ApiError(400, "Username or email is already used by another account");
+      let duplicateField = '';
+      if (existingUser.username === username) {
+         duplicateField = 'Username';
+      } else if (existingUser.email === email) {
+         duplicateField = 'Email';
+      }
+      throw new ApiError(409, `${duplicateField} is already used by another account`);
    }
 
    const user = await User.findByIdAndUpdate(

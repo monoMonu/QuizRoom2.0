@@ -36,7 +36,10 @@ button:focus, select:focus {
     --lg: 1500px;
     --md: 720px;
     --sm: 576px;
+}
 
+/* Blue Theme */
+.dark-theme-1 {
     --primaryColor: #7986cb;
     --secondaryColor: #9fa8da;
     --semi-transparent: #38417743;
@@ -46,27 +49,84 @@ button:focus, select:focus {
     --bg: linear-gradient(to bottom, #21212b, #020717);
     --revMode1: #c5cae9;
 }
-
-.dark-theme {
-    --primaryColor: #7986cb;
-    --secondaryColor: #9fa8da;
-    --semi-transparent: #38417743;
-    --text-1: #f3f3f3;
-    --text-2: #22222b;
-    --text-3: #aaaaaf;
-    --bg: linear-gradient(to bottom, #21212b, #020717);
-    --revMode1: #c5cae9;
-}
-.light-theme {
+.light-theme-1 {
     --primaryColor:#303f9f;
     --secondaryColor: #3949ab;
     --semi-transparent: #3949ab44;
     --text-1: #22222b;
     --text-2: #f3f3f3; 
     --text-3: #444;
-    --bg: linear-gradient(to bottom, #c5cae9, #ebeaf6, #b5bbde);
+    --bg: linear-gradient(to bottom, #ebeaf6, #b5bbde);
     --revMode1: #0d133b;
 }
+
+/* Pleasant Theme (Pastel) */
+.dark-theme-2 {
+    --primaryColor: #365f74;
+    --secondaryColor: #387294;
+    --semi-transparent: #26323880;
+    --text-1: #E0E0E0;
+    --text-2: #1d2326;
+    --text-3: #80CBC4;
+    --bg: linear-gradient(to bottom, #1c252a, #181818);
+    --revMode1: #B2EBF2;
+}
+.light-theme-2 {
+    --primaryColor: #37677f;
+    --secondaryColor: #385e7c;
+    --semi-transparent: #699ab780;
+    --text-1: #212121;
+    --text-2: #FAFAFA;
+    --text-3: #206473;
+    --bg: linear-gradient(to bottom, #e8e8e8, #97cbd9);
+    --revMode1: #263238;
+}
+
+/* Red Theme */
+.dark-theme-4 {
+    --primaryColor: #d53f3f;
+    --secondaryColor: #d15757;
+    --semi-transparent: #5743434e;
+    --text-1: #FFFFFF;
+    --text-2: #22222b;
+    --text-3: #AAAAAA;
+    --bg: linear-gradient(to bottom, #161616, #170702);
+    --revMode1: #da5a51;
+}   
+
+.light-theme-4 {
+    --primaryColor: #d93131;
+    --secondaryColor: #d65a56;
+    --semi-transparent: #5239394e;
+    --text-1: #22222b;
+    --text-2: #FFFFFF;
+    --text-3: #777777;
+    --bg: linear-gradient(to bottom, #d6d6d6, #fbb9b9);
+    --revMode1: #8B0A1A;
+}   
+
+/* Green Theme */
+.dark-theme-3 {
+    --primaryColor: #126a54;
+    --secondaryColor: #209279;
+    --semi-transparent: #273e3844;
+    --text-1: #f3f3f3;
+    --text-2: #22222b;
+    --text-3: #aaaaaf;
+    --bg: linear-gradient(to bottom, #080808, #1a1d1a);
+    --revMode1: #c6efce;
+}
+.light-theme-3 {
+    --primaryColor: #00937b;
+    --secondaryColor: #00a481;
+    --semi-transparent: #45736869;
+    --text-1: #22222b;
+    --text-2: #f3f3f3;
+    --text-3: #444;
+    --bg: linear-gradient(to bottom, #f7f7f7, #91c0b4);
+    --revMode1: #1a1d1a;
+}
+
 
 /* Custom react toast styles */
 .custom-toast {
@@ -450,7 +510,6 @@ section {
 }
 
 #username {
-    color: var(--text-3);
     font-size: 1.1rem;
     padding: .8rem 0 .6rem;
     width: 100%;
@@ -462,7 +521,6 @@ section {
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: var(--primaryColor);
     font-size: 1.3rem;
     text-transform: uppercase;
     padding: 0 1rem;

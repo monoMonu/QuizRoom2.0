@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './sideMenu.module.css';
 import { useAuth } from '../../context/authContext/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,7 +9,8 @@ import { toast } from 'react-toastify';
 
 const SideMenu = ({open=false}) => {
    const navigate = useNavigate();
-   const { theme, toggleTheme } = useTheme();
+   const [ showThemes, setShowThemes ] = useState(0);
+   const { mode, toggleMode, theme } = useTheme();
    const { user, isLoading, logout, clearError } = useAuth();
    const { highScore } = useQuiz();
 
@@ -18,7 +19,7 @@ const SideMenu = ({open=false}) => {
       if(!(res.statusCode===200)){
          toast.error(res.message);
          clearError();
-      } else {   
+      } else {
          toast.success(res.message);
          navigate("/login");
       }
@@ -29,8 +30,8 @@ const SideMenu = ({open=false}) => {
 
    return (
       <div className={`${styles.sideMenu} ${open ? styles.openMenu : ""}`}>
-         <button onClick={toggleTheme} className={styles.themeBtn}>
-            <i className={theme ? "fas fa-sun" : "fas fa-moon"}></i>
+         <button onClick={toggleMode} className={styles.themeBtn}>
+            <i className={mode ? "fas fa-sun" : "fas fa-moon"}></i>
          </button>
          <div className={styles.profileSection}>
             <img src={user.avatar} alt="User Profile Picture" className={styles.profilePic} />
@@ -50,6 +51,10 @@ const SideMenu = ({open=false}) => {
             <Link to="/quiz/leaderboard?page=1&limit=10">
                <button className={styles.navBtn}>Leaderboard</button>
             </Link>
+            <button 
+               className={styles.navBtn} onClick={() => setShowThemes(!showThemes)}
+            > Themes </button>
+            {showThemes ? <ThemePalatte /> : "" }
             <Link to="/login" replace>
                <button className={styles.navBtn} onClick={handleLogout}>Log Out</button>
             </Link>
@@ -60,6 +65,31 @@ const SideMenu = ({open=false}) => {
       </div>
    );
 };
+
+
+// Theme palatte
+const ThemePalatte = () => {
+
+   const { theme, setNewTheme } = useTheme();
+   const [isBoxOpen, setIsBoxOpen] = useState(1);
+
+   return (
+      <div className={`${styles.themePalatte} ${styles.currentTheme}`}>
+         <h3>Select Theme</h3>
+         {isBoxOpen && (
+            <div className={styles.themeBox}>
+               {Array(4).fill(0).map((el, i) => (
+                  <button
+                     key={i}
+                     onClick={() => setNewTheme(i+1)}
+                     className={`${styles.themeOption} ${theme==i+1 ? styles.selected : ""} ${styles[`theme-${i+1}`]}`}
+                  > </button>
+               ))}
+            </div>
+         )}
+      </div>
+   );
+}
 
 
 export default SideMenu;

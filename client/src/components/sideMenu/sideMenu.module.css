@@ -106,3 +106,62 @@
       left: 0;
    }
 }
+
+
+/* theme palatte */
+.themePalatte {
+   position: absolute;
+   z-index: 100;
+   background: rgba(0, 0, 0, .5);
+   -webkit-backdrop-filter: blur(20px);
+   backdrop-filter: blur(20px);
+   width: calc(100% - 25px);
+   border-radius: 10px;
+   left: 50%;
+   transform: translateX(-50%);
+}
+
+.themePalatte h3 {
+   text-align: center;
+   color: var(--text-1);
+   padding-top: 10px;
+}
+
+.themeBox {
+   display: grid;
+   grid: 60px / 60px 60px 60px 60px;
+   justify-content: center;
+   gap: 1rem;
+   border-radius: 5px;
+   padding: 15px 10px;
+   width: 100%;
+   z-index: 1000;
+}
+
+.themeOption {
+   border-radius: 50%;
+}
+.theme-1 {
+   background: #7986cb;
+}
+.theme-2 {
+   background: #456c83;
+}
+.theme-3 {
+   background: #209279;
+}
+.theme-4 {
+   background: #d15757;
+}
+.selected {
+   border: 2px var(--text-1) solid;
+}
+
+.themeOption:last-child {
+   margin-bottom: 0;
+}
+
+.themeOption:hover {
+   transform: scale(.95);
+}
+ 
