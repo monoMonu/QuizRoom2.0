@@ -15,8 +15,8 @@ export const quizReducer = (state, action) => {
          };
       case 'SET_OPTIONS':
          const options = shuffleArray([
-            ...state.questions[state.currQuesInd].incorrect_answers,
-            state.questions[state.currQuesInd].correct_answer
+            ...state.questions[state.currQuesInd]?.incorrect_answers,
+            state.questions[state.currQuesInd]?.correct_answer
          ]);
          return { 
             ...state, 

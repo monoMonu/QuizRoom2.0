@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from './Auth';
-import { loginUser, registerUser, logoutUser, updateUserDetails } from '../../actions/userAction';
+import { loginUser, registerUser, logoutUser, updateUserDetails, updateUserAvatar } from '../../actions/userAction';
 
 export const useAuth = () => {
    const { state, dispatch } = useContext(AuthContext);
@@ -43,8 +43,13 @@ export const useAuth = () => {
 
    const updateUser = async (userData) => {
       try {
+         let data;
          dispatch({ type: 'LOADING', payload: 'Updating User Details...' });
-         const data = await updateUserDetails(userData);
+         data = await updateUserDetails(userData);
+         if(userData.avatarFile) {
+            const avatarUrl = await updateUserAvatar(userData.avatarFile);
+            data.data.avatar = avatarUrl.data;
+         } 
          dispatch({ type: 'UPDATE_USER_SUCCESS', payload: data.data })
          return data;
       } catch (error) {

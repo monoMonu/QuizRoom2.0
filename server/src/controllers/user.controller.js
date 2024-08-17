@@ -10,7 +10,7 @@ import config from '../config.js';
 const randAvatars = [
    "https://i.ibb.co/r7P3mGQ/fox-6249911.png",
    "https://i.ibb.co/Z1VDspm/parrot-4015657.png",
-   "https://i.ibb.co/SBbfncD/eagle-1722599.png",
+   "https://i.ibb.co/n1Q3fKH/bull-terrier-2829735.png",
    "https://i.ibb.co/3zc214y/pet-9108014.png",
    "https://i.ibb.co/0Xg1M2D/penguin-6250524.png"
 ]
@@ -47,16 +47,6 @@ const isPasswordCorrect =  async (password, hashedPassword) => {
 
 const registerUser = asyncHandler(async (req, res)=>{
    let {email, username, fullname, password} = req.body;
-
-   // take all data
-   // data validation 
-   // check if user email exists in the database
-   // get files
-   // upload files to cloudinary
-   // create new user in db
-   // return the user details except password
-   // check for user craetion in db
-   // take care of error handling
 
    // validate data
    if(!email || !username || !fullname || !password) {
@@ -101,14 +91,6 @@ const registerUser = asyncHandler(async (req, res)=>{
 })
 
 const logInUser = asyncHandler(async (req, res) => {
-
-   // get data from body
-   // validate
-   // check if user exists
-   // no > take to register page
-   // yes >  compare passwords
-   // create access and refresh token
-   // save cookies and send response
 
    const {emailORusername, password} =  req.body;
 

@@ -11,13 +11,16 @@ export const EditProfileForm = () => {
       fullname: user.fullname,
       email: user.email
    });
+   const [avatarFile, setAvatarFile] = useState(null);
+   const [avatarPreview, setAvatarPreview] = useState(user.avatar);
    const [isChanged, setIsChanged] = useState(false);
 
    useEffect(() => {
       // Check if form data is different from user data
       const hasChanged = Object.keys(formData).some(key => formData[key] != user[key]);
       setIsChanged(hasChanged);
-   }, [formData, user]);
+      if(avatarFile) setIsChanged(1);
+   }, [formData, user, avatarFile]);
 
    const handleInputChange = (e) => {
       const { id, value } = e.target;
@@ -27,8 +30,16 @@ export const EditProfileForm = () => {
       });
    };
 
+   const handleAvatarChange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+         setAvatarFile(file);
+         setAvatarPreview(URL.createObjectURL(file));
+      }
+   };
+
    const handleFormSubmit = async (e) => {
-      const res = await updateUser(formData);
+      const res = await updateUser({...formData, avatarFile});
       if(!(res.statusCode==200)) {
          toast.error(res.message);
          clearError();
@@ -46,6 +57,17 @@ export const EditProfileForm = () => {
       <section className="editProfileForm">
          <h3>Edit Profile Details...</h3>
          <form onSubmit={onSubmit}>
+            <div className="inputBox">
+               <label htmlFor="avatarFile">
+                  <img src={avatarPreview} />
+                  <span className="credTag">Image By Freepik</span>
+                  <i className="fas fa-arrow-up-from-bracket"></i>
+               </label>
+               <input 
+                  type="file" id="avatarFile" accept="image/png, image/gif, image/jpeg, image/jpg" 
+                  onChange={handleAvatarChange}
+               />
+            </div>
             <div className="inputBox">
                <label htmlFor="fullname">Full Name:</label>
                <input

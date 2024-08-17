@@ -60,7 +60,6 @@ export const getUserDetails = async () => {
 }
 
 
-
 export const updateUserDetails = async (userData) => {
    try {
 
@@ -74,3 +73,28 @@ export const updateUserDetails = async (userData) => {
          throw new Error("Error while updating user details. Please try again")
    }
 }
+
+
+export const updateUserAvatar = async (avatarFile) => {
+   const formData = new FormData();
+   formData.append('avatar', avatarFile);
+   try {
+      const { data } = await mainApi.patch(
+         "/user/update-avatar", 
+         formData,
+         {
+            headers: {
+               "Content-Type": "multipart/form-data",
+            }
+         }
+      );
+      return await data;
+      
+   } catch (error) {
+      if(error?.response?.data?.statusCode) 
+         throw new Error(error.response.data.message);
+      else 
+         throw new Error("Error while updating user details. Please try again")
+   }
+}
+

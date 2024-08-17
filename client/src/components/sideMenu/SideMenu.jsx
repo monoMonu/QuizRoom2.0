@@ -35,6 +35,7 @@ const SideMenu = ({open=false}) => {
          </button>
          <div className={styles.profileSection}>
             <img src={user.avatar} alt="User Profile Picture" className={styles.profilePic} />
+            <span className="credTag">Image By Freepik</span>
             <div className={styles.profileInfo}>
                <h2 className={styles.fullname}>{user.fullname}</h2>
                <p className={styles.username}>{user.username}</p>

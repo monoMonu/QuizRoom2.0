@@ -30,6 +30,7 @@ function LogInPage (){
          clearError();
       } else {   
          toast.success(res.message);
+         localStorage.clear();
       }
    }
 

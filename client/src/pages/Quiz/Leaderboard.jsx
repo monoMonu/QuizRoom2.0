@@ -69,7 +69,7 @@ export const Leaderboard = () => {
                            <span className="l-name">
                               <b>
                                  &nbsp;{user.fullname}
-                                 {["🥇", "🥈", "🥉"][i]}
+                                 {currentPage===1 && ["🥇", "🥈", "🥉"][i]}
                               </b> 
                               <i>
                                  &nbsp;{user.username}
@@ -88,7 +88,8 @@ export const Leaderboard = () => {
                         onClick={() => handlePageChange(index + 1)}
                         disabled={currentPage === index + 1}
                         style={{
-                           color: currentPage === index + 1 ? "var(--text-1)" : "var(--primary-color)"
+                           color: currentPage === index + 1 ? "var(--text-1)" : "var(--primary-color)",
+                           textDecoration: currentPage === index + 1 ? "underline" : "none"
                         }}
                      >
                         {index + 1}

@@ -61,7 +61,7 @@ button:focus, select:focus {
 
 /* Pleasant Theme (Pastel) */
 .dark-theme-2 {
-    --primaryColor: #365f74;
+    --primaryColor: #2598af;
     --secondaryColor: #387294;
     --semi-transparent: #26323880;
     --text-1: #E0E0E0;
@@ -93,17 +93,6 @@ button:focus, select:focus {
     --revMode1: #da5a51;
 }   
 
-.light-theme-4 {
-    --primaryColor: #d93131;
-    --secondaryColor: #d65a56;
-    --semi-transparent: #5239394e;
-    --text-1: #22222b;
-    --text-2: #FFFFFF;
-    --text-3: #777777;
-    --bg: linear-gradient(to bottom, #d6d6d6, #fbb9b9);
-    --revMode1: #8B0A1A;
-}   
-
 /* Green Theme */
 .dark-theme-3 {
     --primaryColor: #126a54;
@@ -126,6 +115,18 @@ button:focus, select:focus {
     --revMode1: #1a1d1a;
 }
 
+.light-theme-4 {
+    --primaryColor: #d93131;
+    --secondaryColor: #d65a56;
+    --semi-transparent: #5239394e;
+    --text-1: #22222b;
+    --text-2: #FFFFFF;
+    --text-3: #777777;
+    --bg: linear-gradient(to bottom, #d6d6d6, #fbb9b9);
+    --revMode1: #8B0A1A;
+}   
+
+
 
 /* Custom react toast styles */
 .custom-toast {
@@ -144,6 +145,20 @@ button:focus, select:focus {
     width: 10px;
     border: 2.5px var(--text-2) solid;
     border-radius: 10px;
+}
+
+.credTag {
+    display: none;
+    background-color: var(--text-1);
+    color: var(--text-2);
+    position: absolute;
+    padding: 5px;
+    font-size: 12px;
+    z-index: 500;
+}
+
+img:hover + .credTag {
+    display: inline-block;
 }
 
 .fas {
@@ -508,23 +523,6 @@ section {
     background-color: var(--revMode1);
 }
 
-#username {
-    font-size: 1.1rem;
-    padding: .8rem 0 .6rem;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-#fullname {
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 1.3rem;
-    text-transform: uppercase;
-    padding: 0 1rem;
-}
-
 .lower_profile>p,
 #edit_profile_btn {
     width: 100%;
@@ -602,6 +600,23 @@ section {
     color: var(--text-1);
     font-size: 1.2rem;
     border-radius: 0;
+}
+
+.inputBox label[for="avatarFile"] {
+    display: inline-block;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.inputBox img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+
+#avatarFile {
+    visibility: hidden;
+    position: absolute;
 }
 
 .buttonBox {

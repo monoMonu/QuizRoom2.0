@@ -113,8 +113,8 @@
    position: absolute;
    z-index: 100;
    background: rgba(0, 0, 0, .5);
-   -webkit-backdrop-filter: blur(20px);
-   backdrop-filter: blur(20px);
+   -webkit-backdrop-filter: blur(40px);
+   backdrop-filter: blur(40px);
    width: calc(100% - 25px);
    border-radius: 10px;
    left: 50%;
@@ -123,13 +123,13 @@
 
 .themePalatte h3 {
    text-align: center;
-   color: var(--text-1);
+   color: var(--light);
    padding-top: 10px;
 }
 
 .themeBox {
    display: grid;
-   grid: 60px / 60px 60px 60px 60px;
+   grid: 55px / 55px 55px 55px 55px;
    justify-content: center;
    gap: 1rem;
    border-radius: 5px;

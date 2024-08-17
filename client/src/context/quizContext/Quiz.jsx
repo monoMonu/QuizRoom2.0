@@ -86,7 +86,7 @@ export const QuizProvider = ({ children }) => {
    }, [state.quizStarted, state.quizFinished, state.timeRemaining[state.currQuesInd]]);
 
    useEffect(() => {
-      if(state.questions.length > 0)
+      if(state.questions.length > 0 && state.quizStarted)
          dispatch({ type: 'SET_OPTIONS' });
    }, [state.currQuesInd])
 
