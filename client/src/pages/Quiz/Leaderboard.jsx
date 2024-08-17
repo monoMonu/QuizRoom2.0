@@ -60,7 +60,7 @@ export const Leaderboard = () => {
                <h1 className="l-title">Leaderboard</h1>
             </div>
             <div className="leaderboard-container">
-               <div className="leaderboard">
+               <div>
                   {leaders.map((user, i) => (
                      <div key={i} className="leaderboard-item">
                         <span className="l-rank">{i + 1}.</span>

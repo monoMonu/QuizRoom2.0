@@ -14,7 +14,6 @@ html {
     font-size: 12px;
 }
 
-
 button,
 select {
     background: transparent;
@@ -215,7 +214,7 @@ a {
 body {
     width: min(100%, var(--lg));
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     font: 400 1.1rem "Comic Neue", "Poppins", sans-serif;
     background: var(--bg);
     background-size: 100% 200%;
@@ -279,8 +278,8 @@ section {
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 2.8rem;
+    height: 2.8rem;
     position: absolute;
     top: 1rem;
     left: 1rem;
@@ -297,11 +296,11 @@ section {
 }
 
 .crossHam .bar:nth-child(1) {
-    transform: translateY(160%) rotate(45deg);
+    transform: translateY(195%) rotate(45deg);
 }
 
 .crossHam .bar:nth-child(2) {
-    transform: translateY(-160%) rotate(-45deg);
+    transform: translateY(-195%) rotate(-45deg);
 }
 
 .homePage, .resultPage, .leaderboardPage {
@@ -313,6 +312,7 @@ section {
 }
 
 .quizControls, .quizResults {
+    height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -669,13 +669,15 @@ section {
 
 .progress_box {
     padding: 1rem 0;
-    width: min(84%, var(--sm));
+    width: calc(100% - 3rem);
+    max-width: var(--md);
 }
 
 .ques_box {
     justify-content: space-between;
     background: var(--semi-transparent);
-    width: min(84%, var(--md));
+    width: calc(100% - 3rem);
+    max-width: var(--md);
     border-radius: .6rem;
     max-height: 60%;
     margin: 3.5rem auto 1.6rem;
@@ -967,18 +969,18 @@ section {
 
 /* Leaderboard Starts */
 .leaderboard {
-    display: flex;
-    flex-direction: column;
     max-width: 1000px;
-    height: 100vh;
+    width: 100%;
     margin: 0 auto;
-    flex: 1;
+    min-height: 100vh;
 }
 
 .topBar {
-    position: relative;
+    position: sticky;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 3rem 0;
+    padding: 2rem 0;
 }
 
 .l-back {
@@ -1002,17 +1004,10 @@ section {
 
 .leaderboard-container {
     width: 100%;
+    height: auto;
     margin: 0 auto 1rem;
+    padding: 0 1rem;
     border-radius: 10px;
-    padding: 0 1rem 1rem;
-    overflow-y: auto;
-    flex: 1;
-}
-
-.leaderboard {
-    display: flex;
-    flex-direction: column;
-    gap: .6rem;
 }
 
 .leaderboard-item {
@@ -1073,7 +1068,9 @@ section {
 }
 
 .pagination {
-    margin:  0 auto 1.5rem;
+    position: relative;
+    padding: 1rem 0;
+    text-align: center;
     font-size: 1.2rem;
 }
 
@@ -1094,11 +1091,6 @@ section {
 
 /* Result Page Ends */
 
-@media screen and (max-width: 800px) {
-    .hamburger {
-        display: flex;
-    }
-}
 
 /* --- Come from Down Page Animation --- 
 @keyframes come-from-down{
@@ -1113,3 +1105,14 @@ section {
 */
 
 /* Media Queries */
+@media screen and (max-width: 800px) {
+    html {
+        font-size: 13px;
+    }
+    .quizControls {
+        padding-bottom: 2rem;
+    }
+    .hamburger {
+        display: flex;
+    }
+}

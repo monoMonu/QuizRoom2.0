@@ -90,6 +90,9 @@
    right: 1.5rem;
    z-index: 50;
 }
+.themeBtn i {
+   font-size: 1.8rem;
+}
 
 .copyRight {
    text-align: center;
