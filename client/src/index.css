@@ -1054,7 +1054,7 @@ section {
 }
 
 .l-score {
-    min-width: 5cap;
+    min-width: 3.8rem;
     color: var(--text-2);
 }
 
