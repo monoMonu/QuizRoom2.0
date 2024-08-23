@@ -1,23 +1,28 @@
 import config from './config.js'
 import connectDB from './database/index.js';
-import {app} from  './app.js';
+import app from './app.js';
 // configuring environment variables
 
-const port  = config.port || 3000;
+const port = config.port || 3000;
 
 // Connecting to mongoDB
 connectDB()
-   .then(()=>{
-      app.listen(port, ()=>{
-         console.log(`Listening on port ${port}`);
-      })
+   .then(() => {
+      if (config.node_env !== 'production') {
+         // Only run the server locally
+         app.listen(port, () => {
+            console.log(`Listening on port ${port}`);
+         });
+
+         app.get('/', (req, res) => {
+            res.send('Quizroom');
+         });
+      } else {
+         console.log('Connected to database');
+      }
    })
-   .catch((error)=>{
-      console.log(`error connecting to database: ${error}`);
+
+   .catch((error) => {
+      console.log(`Error connecting to database: ${error}`);
    });
-
-
-   app.get('/', (req, res)=>{
-      res.send("Quizroom");
-    })
 

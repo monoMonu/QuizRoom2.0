@@ -1,4 +1,5 @@
 import express from 'express'
+import serverless from 'serverless-http';
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import errorHandler from './middlewares/errorHandler.js';
@@ -30,5 +31,5 @@ app.use('/api/v1/stats', statsRouter);
 // Error Handler Middleware
 app.use(errorHandler);
 
-
-export { app };
+export const handler = serverless(app);
+export default app;
